@@ -1,0 +1,8 @@
+{
+  "title": "旅行標題",
+  "subtitle": "年月 ｜ 副標題",
+  "date_range": "YYYY-MM-DD ~ YYYY-MM-DD",
+  "cities": ["城市名"],
+  "slug": "city-YYYY-MM",
+  "icon": "🏯"
+}

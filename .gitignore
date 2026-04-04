@@ -1,0 +1,14 @@
+.envrc
+trek/
+trek-src/
+.claude/
+.mcp.json
+
+# Python
+__pycache__/
+.venv/
+
+# Build artifacts (deploy.sh regenerates)
+trips/*/index.html
+index.html
+trips/*/calendar.ics

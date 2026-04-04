@@ -1,0 +1,25 @@
+{
+  "_comment": "由 build_places_cache.py 生成，不要手寫。此檔是 template 範例。",
+  "ChIJ_EXAMPLE_PLACE_ID": {
+    "maps_query": "店名, City, Country",
+    "display_name": "Store Name",
+    "types": ["restaurant"],
+    "primary_type": "restaurant",
+    "lat": 22.9970,
+    "lng": 120.2120,
+    "formatted_address": "Full address",
+    "short_address": "Short address",
+    "google_maps_uri": "https://maps.google.com/?cid=...",
+    "website": "https://...",
+    "rating": 4.5,
+    "rating_count": 1234,
+    "business_status": "OPERATIONAL",
+    "regular_opening_hours": {
+      "weekdayDescriptions": [
+        "Monday: 9:00 AM – 5:00 PM",
+        "Tuesday: 9:00 AM – 5:00 PM"
+      ]
+    },
+    "fetched_at": "2026-01-01T00:00:00Z"
+  }
+}

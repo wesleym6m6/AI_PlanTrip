@@ -1,0 +1,15 @@
+[
+  { "label": "身分證", "category": "證件" },
+  { "label": "飯店訂房確認", "category": "證件" },
+  { "label": "牙刷", "category": "盥洗" },
+  { "label": "牙膏", "category": "盥洗" },
+  { "label": "防曬乳", "category": "盥洗" },
+  { "label": "刮鬍刀", "category": "盥洗" },
+  { "label": "筆電手機充電器", "category": "電子" },
+  { "label": "耳機", "category": "電子" },
+  { "label": "相機", "category": "電子" },
+  { "label": "止痛藥", "category": "醫療" },
+  { "label": "現金", "category": "財務" },
+  { "label": "信用卡", "category": "財務" },
+  { "label": "輕便雨具", "category": "其他" }
+]

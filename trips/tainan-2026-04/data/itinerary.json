@@ -1,0 +1,1004 @@
+{
+  "days": [
+    {
+      "day": 1,
+      "date": "2026-04-17",
+      "title": "奇美博物館 × 老宅義式晚餐",
+      "subtitle": "仁德→中西區｜博物館＋VR＋森根＋小滿＋Moonrock",
+      "places": [
+        {
+          "type": "transport",
+          "title": "新竹高鐵出發",
+          "note": "07:00 發車，約 08:30 抵達高鐵台南站。",
+          "maps_query": "Hsinchu HSR Station, Taiwan",
+          "place_id": "ChIJpVwYXwc3aDQRQ9EpVY-_efM",
+          "lat": 24.808164899999998,
+          "lng": 121.04024449999999,
+          "display_name": "Hsinchu",
+          "time": "07:00"
+        },
+        {
+          "type": "spot",
+          "title": "奇美博物館",
+          "note": "距高鐵站步行 15 min / 接駁車 5 min。西洋藝術、兵器、樂器收藏。",
+          "maps_query": "奇美博物館, Tainan, Taiwan",
+          "place_id": "ChIJq6qqqnp0bjQRpvTHZeYTjKg",
+          "lat": 22.9345608,
+          "lng": 120.2260268,
+          "display_name": "Chimei Museum",
+          "time": "09:30"
+        },
+        {
+          "type": "food",
+          "title": "奇美博物館內午餐",
+          "note": "館內餐廳或輕食區用餐，不用跑遠。",
+          "maps_query": "奇美博物館, Tainan, Taiwan",
+          "place_id": "ChIJq6qqqnp0bjQRpvTHZeYTjKg",
+          "lat": 22.9345608,
+          "lng": 120.2260268,
+          "display_name": "Chimei Museum",
+          "time": "12:00"
+        },
+        {
+          "type": "spot",
+          "title": "VR《消失的法老》",
+          "note": "奇美 2F VR 體驗廳，~45 min。建議線上預購 680 元（現場 800）。需提前 15 min 報到。",
+          "maps_query": "奇美博物館, Tainan, Taiwan",
+          "place_id": "ChIJq6qqqnp0bjQRpvTHZeYTjKg",
+          "lat": 22.9345608,
+          "lng": 120.2260268,
+          "display_name": "Chimei Museum",
+          "time": "14:00"
+        },
+        {
+          "type": "spot",
+          "title": "河樂廣場",
+          "note": "前中國城改建的下沉式親水公園，運河百年地景之一。VR 結束後順路經過。",
+          "maps_query": "河樂廣場, Tainan, Taiwan",
+          "place_id": "ChIJi1YTdnd3bjQR6TeBoScvyk0",
+          "lat": 22.9936595,
+          "lng": 120.1940493,
+          "display_name": "The Spring",
+          "time": "15:30"
+        },
+        {
+          "type": "hotel",
+          "title": "UIJ 友愛街旅館 Check-in",
+          "note": "中西區友愛街，老城區正中心。放行李、稍作休息。",
+          "maps_query": "UIJ Hotel & Hostel, Tainan, Taiwan",
+          "place_id": "ChIJmTZLr3x2bjQRZE6G_9_d5co",
+          "lat": 22.990782,
+          "lng": 120.1997872,
+          "display_name": "U.I.J Hotel & Hostel - 友愛街旅館",
+          "time": "17:00"
+        },
+        {
+          "type": "food",
+          "title": "森根 Sengen Studio",
+          "note": "老宅義式創意料理，手切麵招牌。僅現金、低消 360、限時 1.5hr、僅 4 桌。IG: @sengen_studio。",
+          "maps_query": "22.9898175,120.2088204",
+          "place_id": null,
+          "lat": 22.9898175,
+          "lng": 120.2088204,
+          "display_name": "森根 Sengen Studio",
+          "time": "18:15"
+        },
+        {
+          "type": "food",
+          "title": "小滿西點",
+          "note": "千層蛋糕名店，不接訂位僅現場候位，低消 150。週六日公休，只有今天能來！",
+          "maps_query": "小滿西點, 台南市東區東平路38號",
+          "place_id": "ChIJma7PeTB3bjQRVvj_wCd8GmE",
+          "lat": 22.9949296,
+          "lng": 120.2331912,
+          "display_name": "小滿西點",
+          "time": "20:30"
+        },
+        {
+          "type": "drink",
+          "title": "Moonrock",
+          "note": "亞洲百大酒吧。訂位低消 600，現場候位低消 350。電話 06-222-9528。",
+          "maps_query": "Moonrock Bar, 台南市北區成功路22巷42弄13號",
+          "place_id": "ChIJ0RYVUJ13bjQRHTxc4fv1wBs",
+          "lat": 22.998893,
+          "lng": 120.2100379,
+          "display_name": "Moonrock",
+          "time": "22:00"
+        }
+      ],
+      "travel": [
+        {
+          "from": 0,
+          "to": 1,
+          "modes": {
+            "transit": {
+              "duration_min": 109.2,
+              "distance_km": 253.3
+            },
+            "driving": {
+              "duration_min": 164.0,
+              "distance_km": 247.5
+            },
+            "bicycling": {
+              "duration_min": 471.8,
+              "distance_km": 285.6
+            },
+            "walking": {
+              "duration_min": 3489.2,
+              "distance_km": 253.4
+            }
+          },
+          "source": "api",
+          "recommended_mode": "driving"
+        },
+        {
+          "from": 1,
+          "to": 2,
+          "modes": {
+            "driving": {
+              "duration_min": 0.0,
+              "distance_km": 0.0
+            },
+            "bicycling": {
+              "duration_min": 0.0,
+              "distance_km": 0.0
+            },
+            "walking": {
+              "duration_min": 0.0,
+              "distance_km": 0.0
+            }
+          },
+          "source": "api",
+          "recommended_mode": "driving"
+        },
+        {
+          "from": 2,
+          "to": 3,
+          "modes": {
+            "walking": {
+              "duration_min": 0.0,
+              "distance_km": 0.0
+            },
+            "bicycling": {
+              "duration_min": 0.0,
+              "distance_km": 0.0
+            },
+            "driving": {
+              "duration_min": 0.0,
+              "distance_km": 0.0
+            }
+          },
+          "source": "api",
+          "recommended_mode": "driving"
+        },
+        {
+          "from": 3,
+          "to": 4,
+          "modes": {
+            "walking": {
+              "duration_min": 118.3,
+              "distance_km": 8.4
+            },
+            "driving": {
+              "duration_min": 24.8,
+              "distance_km": 9.4
+            },
+            "transit": {
+              "duration_min": 48.7,
+              "distance_km": 9.5
+            },
+            "bicycling": {
+              "duration_min": 15.6,
+              "distance_km": 9.2
+            }
+          },
+          "source": "api",
+          "recommended_mode": "driving"
+        },
+        {
+          "from": 4,
+          "to": 5,
+          "modes": {
+            "transit": {
+              "duration_min": 12.2,
+              "distance_km": 0.8
+            },
+            "driving": {
+              "duration_min": 5.2,
+              "distance_km": 1.0
+            },
+            "bicycling": {
+              "duration_min": 2.2,
+              "distance_km": 0.8
+            },
+            "walking": {
+              "duration_min": 12.2,
+              "distance_km": 0.8
+            }
+          },
+          "source": "api",
+          "recommended_mode": "walking"
+        },
+        {
+          "from": 5,
+          "to": 6,
+          "modes": {
+            "bicycling": {
+              "duration_min": 2.8,
+              "distance_km": 1.3
+            },
+            "transit": {
+              "duration_min": 11.9,
+              "distance_km": 1.1
+            },
+            "driving": {
+              "duration_min": 5.2,
+              "distance_km": 1.2
+            },
+            "walking": {
+              "duration_min": 15.9,
+              "distance_km": 1.1
+            }
+          },
+          "source": "api",
+          "recommended_mode": "bicycling"
+        },
+        {
+          "from": 6,
+          "to": 7,
+          "modes": {
+            "bicycling": {
+              "duration_min": 8.2,
+              "distance_km": 4.1
+            },
+            "driving": {
+              "duration_min": 12.5,
+              "distance_km": 3.6
+            },
+            "transit": {
+              "duration_min": 26.1,
+              "distance_km": 4.3
+            },
+            "walking": {
+              "duration_min": 44.1,
+              "distance_km": 3.1
+            }
+          },
+          "source": "api",
+          "recommended_mode": "bicycling"
+        },
+        {
+          "from": 7,
+          "to": 8,
+          "modes": {
+            "transit": {
+              "duration_min": 20.3,
+              "distance_km": 3.5
+            },
+            "driving": {
+              "duration_min": 10.7,
+              "distance_km": 3.2
+            },
+            "bicycling": {
+              "duration_min": 6.5,
+              "distance_km": 3.2
+            },
+            "walking": {
+              "duration_min": 44.9,
+              "distance_km": 3.2
+            }
+          },
+          "source": "api",
+          "recommended_mode": "bicycling"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2026-04-18",
+      "title": "老城探索 × 運河百年燈光",
+      "subtitle": "赤崁樓→神農街→碳烤海產→運河燈會→深夜居酒屋",
+      "places": [
+        {
+          "type": "food",
+          "title": "UIJ 早餐",
+          "note": "飯店內用早餐。",
+          "maps_query": "UIJ Hotel & Hostel, Tainan, Taiwan",
+          "place_id": "ChIJmTZLr3x2bjQRZE6G_9_d5co",
+          "lat": 22.990782,
+          "lng": 120.1997872,
+          "display_name": "U.I.J Hotel & Hostel - 友愛街旅館",
+          "time": "07:30"
+        },
+        {
+          "type": "spot",
+          "title": "赤崁樓",
+          "note": "台南經典古蹟，荷蘭時期普羅民遮城遺跡。距 UIJ 步行 10 min。",
+          "maps_query": "赤崁樓, Tainan, Taiwan",
+          "place_id": "ChIJbYl7d2F2bjQRnFdvyMBuZfI",
+          "lat": 22.997477999999997,
+          "lng": 120.2025433,
+          "display_name": "Chihkan Tower",
+          "time": "09:00"
+        },
+        {
+          "type": "spot",
+          "title": "神農街散步",
+          "note": "清代商業老街，現為文青老屋聚落。早上光線好、人少。",
+          "maps_query": "神農街, Tainan, Taiwan",
+          "place_id": "ChIJn4ahgmZ2bjQRRpYB7Ku1hcU",
+          "lat": 22.9975666,
+          "lng": 120.1965462,
+          "display_name": "神農街",
+          "time": "09:40"
+        },
+        {
+          "type": "food",
+          "title": "江川肉燥飯",
+          "note": "國華街經典小吃，一碗肉燥飯＋一碗湯。週五公休排在今天。",
+          "maps_query": "江川肉燥飯, Tainan, Taiwan",
+          "place_id": "ChIJI_R0smZ2bjQRIzI5k0tghek",
+          "lat": 22.997624599999998,
+          "lng": 120.19918829999999,
+          "display_name": "江川肉燥飯",
+          "time": "10:40"
+        },
+        {
+          "type": "food",
+          "title": "阿興虱目魚",
+          "note": "虱目魚粥/湯名店。⚠️ 只到 14:00，別遲到。",
+          "maps_query": "阿興虱目魚, Tainan, Taiwan",
+          "place_id": "ChIJuxJOSF12bjQRpgwW8ihY0JA",
+          "lat": 23.0065447,
+          "lng": 120.19343710000001,
+          "display_name": "阿興虱目魚",
+          "time": "12:00"
+        },
+        {
+          "type": "spot",
+          "title": "Toy Daddy 扭蛋選物",
+          "note": "午飯後順路逛，阿興旁 300m。扭蛋、盲盒、一番賞。",
+          "maps_query": "Toy Daddy 扭蛋, Tainan, Taiwan",
+          "place_id": "ChIJaer-wJ93bjQRUg7-_N8AJSo",
+          "lat": 23.004071099999997,
+          "lng": 120.1923079,
+          "display_name": "ToyDaddy玩具老爹｜扭蛋｜盲盒｜一番賞",
+          "time": "12:45"
+        },
+        {
+          "type": "drink",
+          "title": "SJÓ 咻咖啡",
+          "note": "板前式虹吸咖啡，融合調酒手法。西門路老宅巷弄。",
+          "maps_query": "SJÓ 咻咖啡, 台南市中西區西門路一段734巷16弄1號",
+          "place_id": "ChIJ3w8cDgB3bjQRNA2RvG5vLIU",
+          "lat": 22.9894619,
+          "lng": 120.19859220000001,
+          "display_name": "SJÓ 咻咖啡",
+          "time": "14:00"
+        },
+        {
+          "type": "food",
+          "title": "楿 Katsura Dessert",
+          "note": "預約制日法盤式甜點，五道套餐 790/人。入口在新美街側 3F。需 inline 線上預約。",
+          "maps_query": "楿 Katsura 甜點, 台南市中西區民族路二段260號",
+          "place_id": "ChIJVVVGaWF2bjQR2WpS7Wf7DC0",
+          "lat": 22.9974702,
+          "lng": 120.20108540000001,
+          "display_name": "楿 Katsura Dessert",
+          "time": "16:00"
+        },
+        {
+          "type": "food",
+          "title": "曉璘碳烤",
+          "note": "近 30 年碳烤海產老店，江振誠推薦。烤雞翅、烤排骨招牌。需預約 06-226-1974。",
+          "maps_query": "曉璘碳烤海產, 台南市中西區國華街三段203號",
+          "place_id": "ChIJTTsCtmZ2bjQR7PgvwM6MAiY",
+          "lat": 22.998319,
+          "lng": 120.19895199999998,
+          "display_name": "曉璘碳烤",
+          "time": "18:00"
+        },
+        {
+          "type": "spot",
+          "title": "🌟 運河 100 燈光裝置",
+          "note": "台南運河百年慶典！望月橋至承天橋、安億橋段。曉璘出來 WeMo 騎 10 min 即達。",
+          "maps_query": "望月橋, Tainan, Taiwan",
+          "place_id": "ChIJDWSw9BF2bjQRc2ycNROtYNo",
+          "lat": 22.997797,
+          "lng": 120.1759038,
+          "display_name": "Wangyue Bridge",
+          "time": "20:00"
+        },
+        {
+          "type": "food",
+          "title": "蕪麥酒食 UMAI",
+          "note": "日式居酒屋，肋眼牛排＋創意料理。僅收現金。營業到 24:00。",
+          "maps_query": "蕪麥酒食 UMAI, 台南市北區長北街52號",
+          "place_id": "ChIJWZ88ewB3bjQRo1bpU3bkRZA",
+          "lat": 23.0009385,
+          "lng": 120.20415649999998,
+          "display_name": "蕪麦酒食",
+          "time": "22:00"
+        }
+      ],
+      "travel": [
+        {
+          "from": 0,
+          "to": 1,
+          "modes": {
+            "driving": {
+              "duration_min": 5.4,
+              "distance_km": 0.9
+            },
+            "walking": {
+              "duration_min": 12.9,
+              "distance_km": 0.9
+            },
+            "bicycling": {
+              "duration_min": 2.6,
+              "distance_km": 0.9
+            },
+            "transit": {
+              "duration_min": 12.4,
+              "distance_km": 1.8
+            }
+          },
+          "source": "api",
+          "recommended_mode": "walking"
+        },
+        {
+          "from": 1,
+          "to": 2,
+          "modes": {
+            "transit": {
+              "duration_min": 12.0,
+              "distance_km": 0.8
+            },
+            "driving": {
+              "duration_min": 4.4,
+              "distance_km": 0.8
+            },
+            "bicycling": {
+              "duration_min": 1.9,
+              "distance_km": 0.8
+            },
+            "walking": {
+              "duration_min": 12.0,
+              "distance_km": 0.8
+            }
+          },
+          "source": "api",
+          "recommended_mode": "walking"
+        },
+        {
+          "from": 2,
+          "to": 3,
+          "modes": {
+            "walking": {
+              "duration_min": 5.4,
+              "distance_km": 0.4
+            },
+            "bicycling": {
+              "duration_min": 1.3,
+              "distance_km": 0.4
+            },
+            "driving": {
+              "duration_min": 2.5,
+              "distance_km": 0.5
+            },
+            "transit": {
+              "duration_min": 5.4,
+              "distance_km": 0.4
+            }
+          },
+          "source": "api",
+          "recommended_mode": "walking"
+        },
+        {
+          "from": 3,
+          "to": 4,
+          "modes": {
+            "transit": {
+              "duration_min": 20.5,
+              "distance_km": 1.4
+            },
+            "bicycling": {
+              "duration_min": 3.2,
+              "distance_km": 1.4
+            },
+            "walking": {
+              "duration_min": 20.5,
+              "distance_km": 1.4
+            },
+            "driving": {
+              "duration_min": 5.1,
+              "distance_km": 1.4
+            }
+          },
+          "source": "api",
+          "recommended_mode": "bicycling"
+        },
+        {
+          "from": 4,
+          "to": 5,
+          "modes": {
+            "driving": {
+              "duration_min": 1.3,
+              "distance_km": 0.4
+            },
+            "bicycling": {
+              "duration_min": 0.9,
+              "distance_km": 0.4
+            },
+            "transit": {
+              "duration_min": 5.3,
+              "distance_km": 0.4
+            },
+            "walking": {
+              "duration_min": 5.3,
+              "distance_km": 0.4
+            }
+          },
+          "source": "api",
+          "recommended_mode": "walking"
+        },
+        {
+          "from": 5,
+          "to": 6,
+          "modes": {
+            "driving": {
+              "duration_min": 10.5,
+              "distance_km": 2.7
+            },
+            "walking": {
+              "duration_min": 34.0,
+              "distance_km": 2.3
+            },
+            "transit": {
+              "duration_min": 34.0,
+              "distance_km": 2.3
+            },
+            "bicycling": {
+              "duration_min": 5.3,
+              "distance_km": 2.4
+            }
+          },
+          "source": "api",
+          "recommended_mode": "bicycling"
+        },
+        {
+          "from": 6,
+          "to": 7,
+          "modes": {
+            "transit": {
+              "duration_min": 9.5,
+              "distance_km": 1.6
+            },
+            "bicycling": {
+              "duration_min": 3.0,
+              "distance_km": 1.1
+            },
+            "driving": {
+              "duration_min": 4.8,
+              "distance_km": 1.1
+            },
+            "walking": {
+              "duration_min": 16.6,
+              "distance_km": 1.1
+            }
+          },
+          "source": "api",
+          "recommended_mode": "bicycling"
+        },
+        {
+          "from": 7,
+          "to": 8,
+          "modes": {
+            "driving": {
+              "duration_min": 2.6,
+              "distance_km": 0.4
+            },
+            "transit": {
+              "duration_min": 4.7,
+              "distance_km": 0.3
+            },
+            "walking": {
+              "duration_min": 4.7,
+              "distance_km": 0.3
+            },
+            "bicycling": {
+              "duration_min": 0.7,
+              "distance_km": 0.4
+            }
+          },
+          "source": "api",
+          "recommended_mode": "walking"
+        },
+        {
+          "from": 8,
+          "to": 9,
+          "modes": {
+            "transit": {
+              "duration_min": 38.6,
+              "distance_km": 2.7
+            },
+            "walking": {
+              "duration_min": 38.6,
+              "distance_km": 2.7
+            },
+            "bicycling": {
+              "duration_min": 6.5,
+              "distance_km": 2.8
+            },
+            "driving": {
+              "duration_min": 9.1,
+              "distance_km": 2.8
+            }
+          },
+          "source": "api",
+          "recommended_mode": "bicycling"
+        },
+        {
+          "from": 9,
+          "to": 10,
+          "modes": {
+            "driving": {
+              "duration_min": 12.6,
+              "distance_km": 3.6
+            },
+            "transit": {
+              "duration_min": 32.7,
+              "distance_km": 5.8
+            },
+            "walking": {
+              "duration_min": 47.5,
+              "distance_km": 3.2
+            },
+            "bicycling": {
+              "duration_min": 8.1,
+              "distance_km": 3.5
+            }
+          },
+          "source": "api",
+          "recommended_mode": "bicycling"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2026-04-19",
+      "title": "文青巡禮 × 藥膳洋食",
+      "subtitle": "孔廟→美術館→林百貨→烏木→水交社→博仁堂→和洋亭",
+      "places": [
+        {
+          "type": "food",
+          "title": "煙波早餐",
+          "note": "飯店內用早餐。",
+          "maps_query": "煙波大飯店台南館, Tainan, Taiwan",
+          "place_id": "ChIJDygZSKp3bjQRAtS_auKYwNI",
+          "lat": 22.988973299999998,
+          "lng": 120.20002699999998,
+          "display_name": "Lakeshore Hotel Tainan",
+          "time": "07:30"
+        },
+        {
+          "type": "spot",
+          "title": "台南孔廟",
+          "note": "全台首學，1665 年建立。距煙波步行 3 min，早上最清幽。",
+          "maps_query": "台南孔廟, Tainan, Taiwan",
+          "place_id": "ChIJFbzVrGJ2bjQRkZC9jslaIgs",
+          "lat": 22.9905296,
+          "lng": 120.2040401,
+          "display_name": "Tainan Confucius Temple",
+          "time": "09:00"
+        },
+        {
+          "type": "spot",
+          "title": "台南美術館二館",
+          "note": "坂茂設計碎形屋頂建築。10:00 開門，距孔廟步行 3 min。",
+          "maps_query": "台南美術館二館, Tainan, Taiwan",
+          "place_id": "ChIJ7Ruxw3x2bjQRZk4MEAECIq4",
+          "lat": 22.990346799999998,
+          "lng": 120.2014304,
+          "display_name": "Preparatory Office of the National Art Museum of Tainan",
+          "time": "10:00"
+        },
+        {
+          "type": "spot",
+          "title": "林百貨",
+          "note": "1932 日治百貨古蹟，頂樓有二戰彈痕和末廣社神社。11:00 開門。",
+          "maps_query": "林百貨, Tainan, Taiwan",
+          "place_id": "ChIJrZJc4GJ2bjQRa3BRyIgtRcM",
+          "lat": 22.9917925,
+          "lng": 120.2025232,
+          "display_name": "Hayashi Department Store",
+          "time": "11:00"
+        },
+        {
+          "type": "food",
+          "title": "烏木 Wumu 甜點",
+          "note": "不提供訂位僅現場候位。甜點精緻數量有限，12:00 開門就到。",
+          "maps_query": "烏木甜點, Tainan, Taiwan",
+          "place_id": "ChIJYw2mYBF3bjQR5nLPEb_1QJA",
+          "lat": 22.983804799999998,
+          "lng": 120.20564489999998,
+          "display_name": "烏木Wumu甜點(無提供切片蛋糕預留及訂位)",
+          "time": "12:00"
+        },
+        {
+          "type": "spot",
+          "title": "水交社文化園區",
+          "note": "日治軍事眷村展覽空間。⚠️ 12-13 午休不開放，13:00 後入場。",
+          "maps_query": "水交社文化園區, Tainan, Taiwan",
+          "place_id": "ChIJW7GkVtR1bjQRPbD_kb-p0_8",
+          "lat": 22.977594200000002,
+          "lng": 120.20153390000002,
+          "display_name": "Shuei Jiao She Cultural Park",
+          "time": "13:30"
+        },
+        {
+          "type": "food",
+          "title": "博仁堂",
+          "note": "米其林必比登 x4 百年中藥行。十全/四物/八珍藥膳，含主食＋甜點。",
+          "maps_query": "博仁堂, 台南市中西區西門路二段300巷27號",
+          "place_id": "ChIJYZYP4mN2bjQRVvKY0Fl3zzg",
+          "lat": 22.9966099,
+          "lng": 120.20043369999999,
+          "display_name": "PO-JEN STORE",
+          "time": "14:30"
+        },
+        {
+          "type": "drink",
+          "title": "万茶川",
+          "note": "博仁堂到和洋亭之間空檔，來杯抹茶。",
+          "maps_query": "万茶川, Tainan, Taiwan",
+          "place_id": "ChIJ6fogxUd3bjQR-VXrP12iIqg",
+          "lat": 22.9900728,
+          "lng": 120.19927290000001,
+          "display_name": "BĀN TÊ",
+          "time": "15:45"
+        },
+        {
+          "type": "food",
+          "title": "和洋亭 真夏",
+          "note": "日本人主廚洋食屋，台灣溫體牛漢堡排。已預約確認。",
+          "maps_query": "和洋亭 真夏 Manatsu, 台南市中西區北門路一段141巷2號",
+          "place_id": "ChIJx7BkVQB3bjQRggT-VmNzwFU",
+          "lat": 22.9953807,
+          "lng": 120.2115608,
+          "display_name": "和洋亭 真夏",
+          "time": "17:00"
+        },
+        {
+          "type": "transport",
+          "title": "前往高鐵台南站",
+          "note": "Uber ~20 min。末班車約 21:30-22:00。",
+          "maps_query": "HSR Tainan Station, Taiwan",
+          "place_id": "ChIJfXKoA6ZzbjQRrgQ9yogpRsI",
+          "lat": 22.9246367,
+          "lng": 120.28566,
+          "display_name": "高鐵台南站",
+          "time": "19:00"
+        }
+      ],
+      "travel": [
+        {
+          "from": 0,
+          "to": 1,
+          "modes": {
+            "driving": {
+              "duration_min": 2.9,
+              "distance_km": 0.7
+            },
+            "bicycling": {
+              "duration_min": 2.6,
+              "distance_km": 0.9
+            },
+            "transit": {
+              "duration_min": 12.2,
+              "distance_km": 0.8
+            },
+            "walking": {
+              "duration_min": 12.2,
+              "distance_km": 0.8
+            }
+          },
+          "source": "api",
+          "recommended_mode": "walking"
+        },
+        {
+          "from": 1,
+          "to": 2,
+          "modes": {
+            "transit": {
+              "duration_min": 9.0,
+              "distance_km": 0.7
+            },
+            "driving": {
+              "duration_min": 2.0,
+              "distance_km": 0.5
+            },
+            "walking": {
+              "duration_min": 9.0,
+              "distance_km": 0.7
+            },
+            "bicycling": {
+              "duration_min": 1.6,
+              "distance_km": 0.7
+            }
+          },
+          "source": "api",
+          "recommended_mode": "walking"
+        },
+        {
+          "from": 2,
+          "to": 3,
+          "modes": {
+            "driving": {
+              "duration_min": 3.1,
+              "distance_km": 0.5
+            },
+            "bicycling": {
+              "duration_min": 1.2,
+              "distance_km": 0.5
+            },
+            "walking": {
+              "duration_min": 6.6,
+              "distance_km": 0.5
+            },
+            "transit": {
+              "duration_min": 6.6,
+              "distance_km": 0.5
+            }
+          },
+          "source": "api",
+          "recommended_mode": "walking"
+        },
+        {
+          "from": 3,
+          "to": 4,
+          "modes": {
+            "bicycling": {
+              "duration_min": 2.5,
+              "distance_km": 1.3
+            },
+            "walking": {
+              "duration_min": 18.1,
+              "distance_km": 1.3
+            },
+            "driving": {
+              "duration_min": 4.5,
+              "distance_km": 1.4
+            },
+            "transit": {
+              "duration_min": 18.1,
+              "distance_km": 1.3
+            }
+          },
+          "source": "api",
+          "recommended_mode": "bicycling"
+        },
+        {
+          "from": 4,
+          "to": 5,
+          "modes": {
+            "driving": {
+              "duration_min": 4.1,
+              "distance_km": 1.1
+            },
+            "walking": {
+              "duration_min": 15.5,
+              "distance_km": 1.1
+            },
+            "bicycling": {
+              "duration_min": 2.2,
+              "distance_km": 1.1
+            },
+            "transit": {
+              "duration_min": 15.5,
+              "distance_km": 1.1
+            }
+          },
+          "source": "api",
+          "recommended_mode": "bicycling"
+        },
+        {
+          "from": 5,
+          "to": 6,
+          "modes": {
+            "driving": {
+              "duration_min": 10.1,
+              "distance_km": 2.6
+            },
+            "transit": {
+              "duration_min": 16.1,
+              "distance_km": 2.8
+            },
+            "walking": {
+              "duration_min": 34.4,
+              "distance_km": 2.4
+            },
+            "bicycling": {
+              "duration_min": 5.3,
+              "distance_km": 2.6
+            }
+          },
+          "source": "api",
+          "recommended_mode": "bicycling"
+        },
+        {
+          "from": 6,
+          "to": 7,
+          "modes": {
+            "walking": {
+              "duration_min": 13.6,
+              "distance_km": 0.9
+            },
+            "bicycling": {
+              "duration_min": 2.3,
+              "distance_km": 0.9
+            },
+            "transit": {
+              "duration_min": 13.6,
+              "distance_km": 0.9
+            },
+            "driving": {
+              "duration_min": 5.1,
+              "distance_km": 1.1
+            }
+          },
+          "source": "api",
+          "recommended_mode": "bicycling"
+        },
+        {
+          "from": 7,
+          "to": 8,
+          "modes": {
+            "driving": {
+              "duration_min": 7.1,
+              "distance_km": 2.0
+            },
+            "walking": {
+              "duration_min": 25.3,
+              "distance_km": 1.7
+            },
+            "transit": {
+              "duration_min": 12.0,
+              "distance_km": 2.4
+            },
+            "bicycling": {
+              "duration_min": 3.9,
+              "distance_km": 1.7
+            }
+          },
+          "source": "api",
+          "recommended_mode": "bicycling"
+        },
+        {
+          "from": 8,
+          "to": 9,
+          "modes": {
+            "driving": {
+              "duration_min": 25.8,
+              "distance_km": 14.2
+            },
+            "bicycling": {
+              "duration_min": 24.3,
+              "distance_km": 13.0
+            },
+            "transit": {
+              "duration_min": 32.5,
+              "distance_km": 17.8
+            },
+            "walking": {
+              "duration_min": 174.4,
+              "distance_km": 12.4
+            }
+          },
+          "source": "api",
+          "recommended_mode": "driving"
+        }
+      ]
+    }
+  ]
+}
