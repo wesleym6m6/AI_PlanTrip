@@ -49,12 +49,13 @@ def load_cache(path):
 
 def build_lookup(cache):
     """Build multiple lookup indices from cache."""
-    by_exact_name = {}  # display_name (lowered) -> (place_id, entry)
+    import unicodedata
+    by_exact_name = {}  # display_name (lowered, NFC) -> (place_id, entry)
     entries = []  # (place_id, entry) for substring search
 
     for pid, entry in cache.items():
         dn = entry.get("display_name", "")
-        by_exact_name[dn.lower()] = (pid, entry)
+        by_exact_name[unicodedata.normalize("NFC", dn.lower())] = (pid, entry)
         entries.append((pid, entry))
 
     return by_exact_name, entries
@@ -65,7 +66,8 @@ def match_place(name, by_exact_name, entries):
 
     Returns (place_id, entry) or (None, None).
     """
-    key = name.lower().strip()
+    import unicodedata
+    key = unicodedata.normalize("NFC", name.lower().strip())
 
     # 1. Exact match on display_name
     if key in by_exact_name:
@@ -73,19 +75,19 @@ def match_place(name, by_exact_name, entries):
 
     # 2. Substring: name contained in display_name
     for pid, entry in entries:
-        dn = entry.get("display_name", "").lower()
+        dn = unicodedata.normalize("NFC", entry.get("display_name", "").lower())
         if key in dn:
             return pid, entry
 
     # 3. Substring: name contained in maps_query
     for pid, entry in entries:
-        mq = entry.get("maps_query", "").lower()
+        mq = unicodedata.normalize("NFC", entry.get("maps_query", "").lower())
         if key in mq:
             return pid, entry
 
     # 4. Reverse: display_name contained in name
     for pid, entry in entries:
-        dn = entry.get("display_name", "").lower()
+        dn = unicodedata.normalize("NFC", entry.get("display_name", "").lower())
         if dn and dn in key:
             return pid, entry
 

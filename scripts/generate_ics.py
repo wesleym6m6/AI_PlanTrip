@@ -112,29 +112,79 @@ def generate_ics(trip_dir: str | pathlib.Path) -> pathlib.Path:
         f"X-WR-CALNAME:{ics_escape(title)}",
     ]
 
+    # Detect UTC offset from places_cache for DTSTART/DTEND timezone
+    utc_offset_str = None
+    cache_path = data_dir / "places_cache.json"
+    if cache_path.exists():
+        cache = json.loads(cache_path.read_text())
+        for entry in cache.values():
+            offset = entry.get("utc_offset_minutes")
+            if offset is not None:
+                sign = "+" if offset >= 0 else "-"
+                h, m = divmod(abs(offset), 60)
+                utc_offset_str = f"{sign}{h:02d}{m:02d}"
+                break
+
     for day in itinerary.get("days", []):
         day_num = day["day"]
         day_title = day.get("title", f"Day {day_num}")
         day_date = start_date + timedelta(days=day_num - 1)
         next_date = day_date + timedelta(days=1)
-
-        # Collect place names for description
-        place_names = [p["title"] for p in day.get("places", [])]
-        description = "\\n".join(ics_escape(name) for name in place_names)
-
         day_date_str = day_date.strftime("%Y%m%d")
         next_date_str = next_date.strftime("%Y%m%d")
 
-        summary = ics_escape(f"Day {day_num} — {day_title}")
+        places = day.get("places", [])
 
-        lines.append("BEGIN:VEVENT")
-        lines.append(f"UID:trip-day{day_num}-{slug}@tripplan")
-        lines.append(f"DTSTAMP:{now_utc}")
-        lines.append(f"DTSTART;VALUE=DATE:{day_date_str}")
-        lines.append(f"DTEND;VALUE=DATE:{next_date_str}")
-        lines.append(f"SUMMARY:{summary}")
-        lines.append(f"DESCRIPTION:{description}")
-        lines.append("END:VEVENT")
+        # Per-place events (when time is available and timezone is known)
+        if utc_offset_str:
+            for i, place in enumerate(places):
+                t = place.get("time")
+                if not t:
+                    continue
+                p_title = place.get("title", "")
+                p_note = place.get("note", "")
+                hh, mm = t.split(":")
+                dt_start = f"{day_date_str}T{hh}{mm}00{utc_offset_str}"
+
+                # End time: use next place's time, or +1h default
+                if i + 1 < len(places) and places[i + 1].get("time"):
+                    nt = places[i + 1]["time"]
+                    nhh, nmm = nt.split(":")
+                    dt_end = f"{day_date_str}T{nhh}{nmm}00{utc_offset_str}"
+                else:
+                    end_dt = datetime.strptime(f"{day_date_str}{hh}{mm}", "%Y%m%d%H%M") + timedelta(hours=1)
+                    dt_end = f"{end_dt.strftime('%Y%m%dT%H%M')}00{utc_offset_str}"
+
+                summary = ics_escape(f"{p_title}")
+                description = ics_escape(p_note) if p_note else ""
+
+                lines.append("BEGIN:VEVENT")
+                lines.append(f"UID:trip-d{day_num}p{i}-{slug}@tripplan")
+                lines.append(f"DTSTAMP:{now_utc}")
+                lines.append(f"DTSTART:{dt_start}")
+                lines.append(f"DTEND:{dt_end}")
+                lines.append(f"SUMMARY:{summary}")
+                if description:
+                    lines.append(f"DESCRIPTION:{description}")
+                lines.append("END:VEVENT")
+        else:
+            # Fallback: all-day event per day (no timezone info)
+            place_names = []
+            for p in places:
+                t = p.get("time", "")
+                prefix = f"{t} " if t else ""
+                place_names.append(f"{prefix}{p['title']}")
+            description = "\\n".join(ics_escape(name) for name in place_names)
+            summary = ics_escape(f"Day {day_num} — {day_title}")
+
+            lines.append("BEGIN:VEVENT")
+            lines.append(f"UID:trip-day{day_num}-{slug}@tripplan")
+            lines.append(f"DTSTAMP:{now_utc}")
+            lines.append(f"DTSTART;VALUE=DATE:{day_date_str}")
+            lines.append(f"DTEND;VALUE=DATE:{next_date_str}")
+            lines.append(f"SUMMARY:{summary}")
+            lines.append(f"DESCRIPTION:{description}")
+            lines.append("END:VEVENT")
 
     lines.append("END:VCALENDAR")
 

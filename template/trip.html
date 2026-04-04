@@ -42,6 +42,7 @@ a.place:hover{background:#f0f6ff}
 a.place:active{background:#e3edfa}
 
 .pc{flex:1;min-width:0}
+.pc-time{font-size:12px;color:#1a5276;font-weight:600;font-variant-numeric:tabular-nums;margin-right:4px}
 .pc-title{font-size:14px;font-weight:600;margin-bottom:2px}
 .pc-note{font-size:12px;color:#666;line-height:1.5}
 .pc-user-note{font-size:12px;color:#1a73e8;line-height:1.5;margin-top:2px;font-style:italic}
@@ -305,7 +306,7 @@ a.place:active{background:#e3edfa}
 {% endif %}
   <div class="pc">
     <div class="pc-title">{{ emoji_map.get(place.type, '') }} {{ place.title }}</div>
-    {% if place.note %}<div class="pc-note">{{ place.note }}</div>{% endif %}
+    {% if place.note or place.time %}<div class="pc-note">{% if place.time %}<span class="pc-time">{{ place.time }}</span>{% endif %}{{ place.note }}</div>{% endif %}
     <div class="pc-user-note" id="pn-{{ day.day }}-{{ loop.index0 }}"></div>
   </div>
   <button class="place-edit-btn" onclick="event.preventDefault();event.stopPropagation();togglePlaceNote({{ day.day }},{{ loop.index0 }})" title="備註">&#9998;</button>
