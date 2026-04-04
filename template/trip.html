@@ -59,10 +59,18 @@ a.place:active{background:#e3edfa}
 .place-note-editor button{margin-top:6px;padding:8px 16px;background:#1a73e8;color:#fff;border:none;border-radius:8px;font-size:13px;cursor:pointer}
 
 /* Travel segment between places */
-.travel-seg{display:flex;align-items:center;gap:8px;padding:6px 14px 6px 28px;background:#fafbfc;border-bottom:1px solid #f0f0f0;font-size:11px;color:#888}
+.travel-seg{display:flex;flex-direction:column;gap:2px;padding:6px 14px 6px 28px;background:#fafbfc;border-bottom:1px solid #f0f0f0;font-size:11px;color:#888}
+.travel-seg .seg-main{display:flex;align-items:center;gap:8px}
 .travel-seg .seg-icon{font-size:14px}
 .travel-seg .seg-line{flex:1;height:1px;background:#e0e0e0}
 .travel-seg .seg-info{white-space:nowrap;color:#555;font-weight:500}
+.travel-seg .seg-transit{display:flex;flex-direction:column;gap:2px;padding:2px 0 2px 22px;font-size:10px;color:#666}
+.travel-seg .seg-transit-step{display:flex;align-items:center;gap:5px;line-height:1.5}
+.travel-seg .seg-transit-line{background:#1a73e8;color:#fff;padding:1px 6px;border-radius:8px;font-weight:600;font-size:9px;white-space:nowrap}
+.travel-seg .seg-transit-line.bus{background:#0d7a3e}
+.travel-seg .seg-transit-line.rail{background:#1a5276}
+.travel-seg .seg-transit-stops{color:#555}
+.travel-seg .seg-transit-time{color:#999;margin-left:auto;white-space:nowrap}
 
 /* Map */
 #map-panel{display:none}
@@ -247,23 +255,40 @@ a.place:active{background:#e3edfa}
   {% if travel_seg.found %}
     {% set t = travel_seg.found %}
 <div class="travel-seg">
-  <span class="seg-icon">{{ mode_icon.get(t.recommended_mode or t.mode, t.icon | default('')) }}</span>
-  <span class="seg-info">
-  {%- if t.recommended_mode and t.modes and t.modes[t.recommended_mode] is defined -%}
-    {%- set rm = t.modes[t.recommended_mode] -%}
-    {{ rm.duration_min | round(0) | int }} 分鐘 ｜ {{ rm.distance_km }} km
-  {%- elif t.modes and t.source == 'api' -%}
-    {%- set best = t.modes.driving or t.modes.walking or t.modes.transit -%}
-    {%- if best -%}
-      {{ best.duration_min | round(0) | int }} 分鐘 ｜ {{ best.distance_km }} km
+  <div class="seg-main">
+    <span class="seg-icon">{{ mode_icon.get(t.recommended_mode or t.mode, t.icon | default('')) }}</span>
+    <span class="seg-info">
+    {%- if t.recommended_mode and t.modes and t.modes[t.recommended_mode] is defined -%}
+      {%- set rm = t.modes[t.recommended_mode] -%}
+      {{ rm.duration_min | round(0) | int }} 分鐘 ｜ {{ rm.distance_km }} km
+    {%- elif t.modes and t.source == 'api' -%}
+      {%- set best = t.modes.driving or t.modes.walking or t.modes.transit -%}
+      {%- if best -%}
+        {{ best.duration_min | round(0) | int }} 分鐘 ｜ {{ best.distance_km }} km
+      {%- else -%}
+        {{ t.info }}（估計）
+      {%- endif -%}
     {%- else -%}
       {{ t.info }}（估計）
     {%- endif -%}
-  {%- else -%}
-    {{ t.info }}（估計）
+    </span>
+    <span class="seg-line"></span>
+  </div>
+  {%- if t.recommended_mode == 'transit' and t.modes.transit is defined and t.modes.transit.transit_steps is defined -%}
+  <div class="seg-transit">
+    {%- for step in t.modes.transit.transit_steps -%}
+    <div class="seg-transit-step">
+      {%- set vtype = step.transitLine.vehicle.type | default('BUS') -%}
+      {%- set line_class = 'rail' if 'RAIL' in vtype or 'TRAIN' in vtype or 'SUBWAY' in vtype else 'bus' -%}
+      <span class="seg-transit-line {{ line_class }}">{{ step.transitLine.nameShort | default(step.transitLine.name | default('?')) }}</span>
+      <span class="seg-transit-stops">{{ step.stopDetails.departureStop.name }} → {{ step.stopDetails.arrivalStop.name }}</span>
+      {%- if step.stopDetails.departureTimeLocal -%}
+        <span class="seg-transit-time">{{ step.stopDetails.departureTimeLocal }}</span>
+      {%- endif -%}
+    </div>
+    {%- endfor -%}
+  </div>
   {%- endif -%}
-  </span>
-  <span class="seg-line"></span>
 </div>
   {% endif %}
 {% endif %}

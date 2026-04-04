@@ -106,7 +106,7 @@ echo '{
 
 | 用途 | 腳本 | 輸入 | 輸出 |
 |------|------|------|------|
-| 渲染單趟旅行 HTML | `render_trip.py` | trip 目錄引數 | 寫入 `index.html`（同時自動呼叫 `generate_ics.py` 產生行事曆檔） |
+| 渲染單趟旅行 HTML | `render_trip.py` | trip 目錄引數 | 寫入 `index.html`（同時自動呼叫 `generate_ics.py` 產生行事曆檔）。自動從 `places_cache.json` 讀取 `utc_offset_minutes` 將 transit 的 UTC 時間轉為當地時間 |
 | 重建首頁 | `build_index.py` | 無 | 寫入根目錄 `index.html` |
 | 部署到 GitHub Pages | `deploy.sh` | 無 | 重新渲染所有 trip → force-push 到 gh-pages |
 
@@ -476,10 +476,42 @@ cp template/data/packing.json trips/{slug}/data/packing.json
 
 ```bash
 # 1. 充實交通資料（加入每段 travel 的距離/時間/推薦模式）
-direnv exec $REPO python3 scripts/enrich_itinerary.py trips/{slug}/data/itinerary.json walking,bicycling,driving
+#    第三個引數是 UTC offset（當地時區），讓 transit 查詢使用行程中的實際出發時間。
+#    ⚠️ 時區必須是目的地的當地時區，不是用戶所在時區！
+direnv exec $REPO python3 scripts/enrich_itinerary.py trips/{slug}/data/itinerary.json walking,transit,driving +09:00
 
 # 2. 營業時間驗證（每個景點的到訪時間 vs 營業時間）
 direnv exec $REPO python3 scripts/check_hours.py trips/{slug}
+```
+
+**常見時區對照：**
+| 目的地 | UTC Offset |
+|--------|-----------|
+| 台灣 | `+08:00` |
+| 日本 | `+09:00` |
+| 越南/泰國 | `+07:00` |
+| 韓國 | `+09:00` |
+| 新加坡/馬來西亞 | `+08:00` |
+| 英國（夏令） | `+01:00` |
+| 法國（夏令） | `+02:00` |
+| 美東（夏令） | `-04:00` |
+| 美西（夏令） | `-07:00` |
+| 澳洲雪梨（夏令） | `+11:00` |
+
+**時區影響：** 當有 UTC offset 時，enrich 會用 `{day.date}T{place.time}:00{offset}` 建構每段路線的 `departure_time`，Routes API 據此回傳**對應該時間點的實際班次資訊**（哪班車、幾點發、幾點到、經過幾站）。沒有 offset 則 transit 查不到準確班次。
+
+**Transit 回傳資料：** 當 transit 有班次資料時，每段 travel 的 `modes.transit` 會包含 `transit_steps` 陣列，每個 step 有完整的 `transitDetails`（站名、發車時間、到達時間、路線名、營運公司、車種、經過站數）。
+
+**Transit HTML 渲染：** `render_trip.py` 會在每段交通下方顯示 transit 細節：
+- 路線膠囊標籤（綠色 = 公車，深藍 = 火車/高鐵/地鐵）
+- 上車站 → 下車站
+- 當地發車時間（自動從 UTC 轉換，時區來自 `places_cache.json` 的 `utc_offset_minutes`）
+- 轉乘段會顯示多行（每班車一行）
+
+渲染範例：
+```
+🚇 28 分鐘 ｜ 5.9 km
+   [77]  民族路西華南街口 → 南紡購物中心  18:28
 ```
 
 enrich 不會動已有座標的 entry，只計算路線交通。check_hours 會報告 ✅/⚠️/❌/🔓/❓ 狀態。
@@ -556,7 +588,7 @@ echo '{"cache_path":"trips/tainan-2026-04/data/places_cache.json","output_path":
 # Step 8c-8f: reservations.json, todo.json, info.json, packing.json（手寫 + template 複製）
 
 # Step 9: enrich + 驗證
-direnv exec $REPO python3 scripts/enrich_itinerary.py trips/tainan-2026-04/data/itinerary.json walking,bicycling,driving
+direnv exec $REPO python3 scripts/enrich_itinerary.py trips/tainan-2026-04/data/itinerary.json walking,bicycling,driving,transit +08:00
 # → "Places: 30 pre-resolved, 0 need API resolution"
 # → "Enriched 30 places and 27 routes."
 
@@ -577,18 +609,80 @@ direnv exec $REPO bash scripts/deploy.sh  # 需用戶確認
 
 `enrich_itinerary.py` 自動選擇每段的 `recommended_mode`：
 - **≤ 1 km：** 步行
-- **1–5 km：** bicycling（機車的代理模式）
+- **1–5 km：** bicycling（機車的代理模式）或 two_wheeler（真實機車路線）
 - **> 5 km：** driving（計程車/Grab）
 
-`available_modes` 可限制選項，如 `["walking", "driving"]` = 不騎機車。
+`available_modes` **直接控制 API 查詢範圍**——只查指定的模式，不會浪費 API call 在用不到的模式上。同時也限制 `recommended_mode` 只從這些模式中選。
 
-Google API 沒有機車模式——用 bicycling 代替。`enrich_itinerary.py` 自動套用 `SCOOTER_SPEED_FACTOR=0.5` 校正時間。
+常見組合範例：
+```bash
+# 有機車（台灣/越南常見）
+enrich_itinerary.py itinerary.json walking,bicycling,driving +08:00
+
+# 純大眾運輸 + 偶爾 Uber
+enrich_itinerary.py itinerary.json walking,transit,driving +09:00
+
+# 純步行 + 大眾運輸（沒車沒機車沒 Uber）
+enrich_itinerary.py itinerary.json walking,transit +08:00
+
+# 真實機車路線（東南亞，Enterprise 層級）
+enrich_itinerary.py itinerary.json walking,two_wheeler,driving +07:00
+```
+
+### Routes API 交通模式
+
+| 內部名稱 | Routes API 模式 | 計費層級 | 說明 |
+|----------|----------------|---------|------|
+| `driving` | DRIVE | Essentials | 汽車路線 |
+| `walking` | WALK | Essentials | 步行路線 |
+| `bicycling` | BICYCLE | Essentials | 自行車路線（也可作為機車代理，×0.5 校正） |
+| `transit` | TRANSIT | Essentials | 大眾運輸（支援 `departure_time`，受地區限制） |
+| `two_wheeler` | TWO_WHEELER | **Enterprise** | 真實機車路線（$15/千次，免費 1,000/月） |
+
+### Routes API 地區覆蓋（實測 + 官方文件，2026-04-04 驗證）
+
+**完整資料見 `scripts/routes_coverage.py`。** 以下是常見旅遊目的地摘要：
+
+| 地區 | DRIVE | WALK | BICYCLE | TWO_WHEELER | TRANSIT |
+|------|-------|------|---------|-------------|---------|
+| 🇹🇼 台灣 | ✅ | ✅ | ✅ | ✅ | ✅ |
+| 🇯🇵 日本 | ✅ | ✅ | ✅ | ❌ | ❌ **官方排除** |
+| 🇻🇳 越南 | ✅ | ✅ | ❌ | ✅ | ✅ |
+| 🇰🇷 韓國 | ✅ | ✅ | ✅ | ❌ | ✅ |
+| 🇹🇭 泰國 | ✅ | ✅ | ❌ | ✅ | ✅ |
+| 🇸🇬 新加坡 | ✅ | ✅ | ✅ | ✅ | ✅ |
+| 🇺🇸 美國 | ✅ | ✅ | ✅ | ❌ | ✅ |
+| 🇬🇧 英國 | ✅ | ✅ | ✅ | ❌ | ✅ |
+| 🇫🇷 法國 | ✅ | ✅ | ✅ | ❌ | ✅ |
+| 🇦🇺 澳洲 | ✅ | ✅ | ✅ | ❌ | ✅ |
+
+**關鍵規則：**
+- **TRANSIT**：Google 官方明確排除日本（所有城市）和印度 IRCTC（長途鐵路）。其他國家看城市層級 GTFS 合作夥伴覆蓋。
+- **TWO_WHEELER**：僅 ~40 個國家支援（主要東南亞、南亞、南美、非洲）。完整清單見 `routes_coverage.py`。
+- **BICYCLE**：東南亞普遍不可用（越南、泰國、馬來西亞、印尼等），但東亞、歐美可用。
+- **東南亞旅行**：用 `two_wheeler` 取代 `bicycling` 估算機車時間更準確。
+- **日本旅行**：只有 driving / walking / bicycling 可用。TRANSIT 需改用其他方案（見下方降級規則）。
+
+### Agent 處理不支援模式的流程
+
+`directions.py` 的 `get_directions()` 接受 `country_code` 參數，自動跳過不支援的模式（省 API 呼叫）。
+
+**當用戶選擇的 `available_modes` 包含不支援的模式時：**
+
+1. Agent 在 Phase 1 Step 1 收集需求時，根據目的地國家查 `routes_coverage.py`
+2. 如果用戶需要的模式不支援（例如日本的 transit），**必須告知用戶**：
+   - 說明哪些模式不可用、原因
+   - 建議替代方案（如 driving 時間作為參考、或使用 Google Maps app 手動查 transit）
+   - 讓用戶決定是否接受
+3. 在 `enrich_itinerary.py` 呼叫時，只傳入支援的 `available_modes`
+4. `directions.py` 的 `skipped_modes` 回傳值會標記哪些模式被跳過
 
 ## 降級規則
 
 - **沒有 API key：** `directions.py` 回傳 `source: "unavailable"`，place_id 為 null。模板降級用 `maps/search/` URL，顯示「估計」。
-- **API 限速：** 批次平行 + 重試。Places: 8/batch + 1s 間隔；Directions: 15/batch + 1s 間隔。
+- **API 限速：** 批次平行 + 重試。Places: 8/batch + 1s 間隔；Routes: 15/batch + 1s 間隔。
 - **缺 place_id：** 模板用 `maps_query` 搜尋 URL 作為替代。
+- **Transit 不支援（日本等）：** 用 driving 時間作為大眾運輸的近似參考。東京市區電車通常比開車快，但 driving 至少給出量級。Agent 應在行程表備註「交通時間為開車估計，實際電車可能更快/更慢」。
 
 ## 常見陷阱
 
@@ -596,7 +690,7 @@ Google API 沒有機車模式——用 bicycling 代替。`enrich_itinerary.py` 
 - **`plan_route.py` 不懂語意** — 只優化距離，會把早餐排下午、夜市排早上。Agent 必須用常識在 SA 結果後調整。
 - **direnv exec 必須** — Claude Code 的 Bash 跑非互動 shell，`cd` 不會觸發 direnv。一律：`direnv exec $REPO <指令>`。
 - **新開的店可能 Google Maps 沒收錄** — 解析失敗時，先用 WebSearch 搜 IG/Facebook/部落格找座標。找到後在 `places_cache.json` 手動建 entry（key 用 `manual_` 前綴）。在 `build_itinerary.py` 輸入中給 `lat` + `lng`，腳本自動設 `place_id: null`，模板會用座標連結。
-- **bicycling 是機車代理模式** — Google API 沒有機車模式。`enrich_itinerary.py` 自動將 bicycling 時間 ×0.5 校正為機車速度。`render_trip.py` 將 bicycling 顯示為 🛵。
+- **機車路線有兩種方式** — (1) Routes API 的 `TWO_WHEELER` 模式可取得真實機車路線（Enterprise 層級，僅 ~40 國支援，見覆蓋表）。(2) 不支援的地區用 `bicycling` 作為代理，`enrich_itinerary.py` 自動將 bicycling 時間 ×0.5 校正為機車速度。`render_trip.py` 將 bicycling 顯示為 🛵。東南亞旅行優先用 `two_wheeler`（但注意 BICYCLE 在東南亞普遍不可用，不能混用）。
 - **行李清單要從 template 複製** — `template/data/packing.json` 是預設清單，每趟旅行都要複製再依目的地增減（如加 VR 票、高鐵票等特定項目）。
 
 ## 完成檢查清單

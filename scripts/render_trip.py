@@ -7,6 +7,7 @@ Output: trips/vietnam-2026-05/index.html
 import json
 import sys
 import pathlib
+from datetime import datetime, timedelta, timezone
 from jinja2 import Environment, FileSystemLoader
 
 TEMPLATE_DIR = pathlib.Path(__file__).parent.parent / "template"
@@ -63,6 +64,34 @@ def main():
                     "place_id": place.get("place_id"),
                     "maps_query": place.get("maps_query", ""),
                 })
+
+    # Detect UTC offset from places_cache for local time display
+    cache_path = data_dir / "places_cache.json"
+    utc_offset_min = 0
+    if cache_path.exists():
+        cache = load_json(cache_path)
+        for pid, p in cache.items():
+            offset = p.get("utc_offset_minutes")
+            if offset is not None:
+                utc_offset_min = offset
+                break
+
+    # Pre-process transit steps: convert UTC times to local time strings
+    local_tz = timezone(timedelta(minutes=utc_offset_min))
+    for day in itinerary["days"]:
+        for t in day.get("travel", []):
+            transit = t.get("modes", {}).get("transit", {})
+            for step in transit.get("transit_steps", []):
+                stops = step.get("stopDetails", {})
+                for key in ("departureTime", "arrivalTime"):
+                    utc_str = stops.get(key)
+                    if utc_str and utc_str.endswith("Z"):
+                        try:
+                            utc_dt = datetime.fromisoformat(utc_str.replace("Z", "+00:00"))
+                            local_dt = utc_dt.astimezone(local_tz)
+                            stops[key + "Local"] = local_dt.strftime("%H:%M")
+                        except (ValueError, TypeError):
+                            pass
 
     env = Environment(loader=FileSystemLoader(str(TEMPLATE_DIR)))
     template = env.get_template("trip.html")

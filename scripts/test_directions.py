@@ -31,8 +31,8 @@ def test_resolve_single_place():
     assert 106.0 < place["lng"] < 107.0, f"Lng out of range: {place['lng']}"
 
 
-def test_directions_between_two_places():
-    """Directions API should return duration and distance for available modes."""
+def test_routes_between_two_places():
+    """Routes API should return duration and distance for available modes."""
     data = {
         "places": [
             {"maps_query": "Tan Son Nhat International Airport, Ho Chi Minh City, Vietnam"},
@@ -45,6 +45,25 @@ def test_directions_between_two_places():
     assert "driving" in route["modes"], "Missing driving mode"
     assert route["modes"]["driving"]["duration_min"] > 0
     assert route["modes"]["driving"]["distance_km"] > 0
+
+
+def test_routes_with_departure_time():
+    """Routes API should accept per-route departure_time (transit only)."""
+    data = {
+        "places": [
+            {"maps_query": "Times Square, New York, USA"},
+            {"maps_query": "Brooklyn Bridge, New York, USA"}
+        ],
+        "routes": [{"from": 0, "to": 1, "departure_time": "2026-04-10T10:00:00-04:00"}]
+    }
+    result = run_directions(data)
+    route = result["routes"][0]
+    # departure_time only affects transit; driving/walking should still work
+    assert "driving" in route["modes"], "Missing driving mode"
+    assert "walking" in route["modes"], "Missing walking mode"
+    # Transit should work in NYC with departure_time
+    assert "transit" in route["modes"], "Missing transit mode (NYC should support transit)"
+    assert route["modes"]["transit"]["duration_min"] > 0
 
 
 def test_no_api_key_fallback():
@@ -71,8 +90,10 @@ def test_no_api_key_fallback():
 if __name__ == "__main__":
     test_resolve_single_place()
     print("PASS: test_resolve_single_place")
-    test_directions_between_two_places()
-    print("PASS: test_directions_between_two_places")
+    test_routes_between_two_places()
+    print("PASS: test_routes_between_two_places")
+    test_routes_with_departure_time()
+    print("PASS: test_routes_with_departure_time")
     test_no_api_key_fallback()
     print("PASS: test_no_api_key_fallback")
     print("\nAll tests passed.")

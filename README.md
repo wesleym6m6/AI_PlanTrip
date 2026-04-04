@@ -5,7 +5,7 @@
 ## 功能
 
 - **互動式行程規劃** — AI agent 提案景點，你篩選、排序、加約束
-- **真實資料驅動** — Google Places API 營業時間 + Directions API 交通時間
+- **真實資料驅動** — Google Places API 營業時間 + Routes API 交通時間
 - **自動生成網站** — 行程表、地圖、行事曆下載、訂位清單、行李清單
 - **GitHub Pages 部署** — 一鍵部署，手機隨時查看
 
@@ -31,7 +31,9 @@ direnv allow
 
 到 [Google Cloud Console](https://console.cloud.google.com/apis/credentials) 建立 API Key，啟用：
 - **Places API (New)**
-- **Directions API**
+- **Routes API**
+
+API Key 的「API restrictions」需包含這兩個 service。舊版 Directions API 自 2025/3 起已無法新啟用。
 
 填入 `.envrc`：
 ```bash
@@ -68,6 +70,7 @@ trip-plan/
 │   ├── build_places_cache.py   # 批次解析景點 → places_cache.json
 │   ├── build_itinerary.py      # 從簡化輸入 + cache → itinerary.json
 │   ├── enrich_itinerary.py     # 充實交通資料（距離/時間/模式）
+│   ├── routes_coverage.py      # Routes API 地區覆蓋資料（transit/two_wheeler 支援國家）
 │   ├── check_hours.py          # 營業時間驗證（含到達時間）
 │   ├── render_trip.py          # 渲染 HTML + 行事曆
 │   ├── build_index.py          # 重建首頁

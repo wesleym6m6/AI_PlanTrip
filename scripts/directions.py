@@ -5,6 +5,8 @@ Input (stdin JSON):
 {
   "places": [{"maps_query": "Place Name, City, Country"}, ...],
   "routes": [{"from": 0, "to": 1}, ...]  // optional, indices into places
+  // Per-route departure_time (optional, RFC 3339):
+  // "routes": [{"from": 0, "to": 1, "departure_time": "2026-05-18T09:00:00+09:00"}]
 }
 
 Output (stdout JSON):
@@ -13,17 +15,21 @@ Output (stdout JSON):
   "routes": [{"from": 0, "to": 1, "modes": {"driving": {"duration_min": N, "distance_km": N}, ...}, "source": "api"}, ...]
 }
 
-API Quota (project: maps-directions-202604, queried 2026-04-04):
+APIs used:
+  - Places API (New):  places.googleapis.com — searchText endpoint
+  - Routes API:        routes.googleapis.com — computeRoutes endpoint
+
+API Quota (project: maps-directions-202604):
   - Places API (searchText):   600 QPM = 10 QPS  | 75,000/day
-  - Directions API (legacy):  3000 QPM = 50 QPS  | unlimited/day
+  - Routes API (computeRoutes): check GCP console for current quotas
   Quotas are per-project. Check current values:
     gcloud auth print-access-token | xargs -I{} curl -s \
-      "https://serviceusage.googleapis.com/v1beta1/projects/maps-directions-202604/services/places.googleapis.com/consumerQuotaMetrics" \
+      "https://serviceusage.googleapis.com/v1beta1/projects/maps-directions-202604/services/routes.googleapis.com/consumerQuotaMetrics" \
       -H "Authorization: Bearer {}"
 
 Parallelism strategy:
-  - Places:     batch 8 concurrent, 1.0s gap between batches (target ~8 QPS, under 10 QPS limit)
-  - Directions:  batch 15 concurrent, 1.0s gap between batches (target ~15 QPS, under 50 QPS limit)
+  - Places:  batch 8 concurrent, 1.0s gap between batches (target ~8 QPS, under 10 QPS limit)
+  - Routes:  batch 15 concurrent, 1.0s gap between batches
   Each individual request within a batch fires simultaneously; the batch gap ensures
   we stay under the per-minute quota. Do NOT raise batch sizes without verifying quota.
 """
@@ -37,14 +43,41 @@ import requests
 
 API_KEY = os.environ.get("GOOGLE_MAPS_API_KEY", "")
 PLACES_URL = "https://places.googleapis.com/v1/places:searchText"
-DIRECTIONS_URL = "https://maps.googleapis.com/maps/api/directions/json"
+ROUTES_URL = "https://routes.googleapis.com/directions/v2:computeRoutes"
+ROUTES_FIELD_MASK = ",".join([
+    "routes.duration",
+    "routes.distanceMeters",
+    "routes.legs.duration",
+    "routes.legs.distanceMeters",
+    "routes.legs.startLocation",
+    "routes.legs.endLocation",
+    "routes.legs.steps.distanceMeters",
+    "routes.legs.steps.staticDuration",
+    "routes.legs.steps.startLocation",
+    "routes.legs.steps.endLocation",
+    "routes.legs.steps.travelMode",
+    "routes.legs.steps.navigationInstruction",
+    "routes.legs.steps.localizedValues",
+    "routes.legs.steps.transitDetails",
+])
+
+# Internal mode names (backward-compatible with all consumers)
 TRANSPORT_MODES = ["driving", "walking", "transit", "bicycling"]
+
+# Mapping: internal mode name → Routes API travelMode enum
+MODE_TO_API = {
+    "driving": "DRIVE",
+    "walking": "WALK",
+    "transit": "TRANSIT",
+    "bicycling": "BICYCLE",
+    "two_wheeler": "TWO_WHEELER",
+}
 
 # --- Quota-derived constants (see docstring for source) ---
 PLACES_BATCH_SIZE = 8       # 10 QPS limit, leave 20% headroom
 PLACES_BATCH_DELAY = 1.0    # seconds between batches
-DIRECTIONS_BATCH_SIZE = 15  # 50 QPS limit, leave 70% headroom
-DIRECTIONS_BATCH_DELAY = 1.0
+ROUTES_BATCH_SIZE = 15
+ROUTES_BATCH_DELAY = 1.0
 
 
 DEFAULT_FIELD_MASK = "places.id,places.displayName,places.location"
@@ -117,59 +150,138 @@ def resolve_place(query, max_retries=3, field_mask=None):
     }
 
 
-def get_single_direction(origin_lat, origin_lng, dest_lat, dest_lng, mode, max_retries=3):
-    """Get directions for a single transport mode between two coordinates."""
+def get_single_route(origin_lat, origin_lng, dest_lat, dest_lng, mode,
+                     departure_time=None, max_retries=3):
+    """Get route for a single transport mode using Routes API (computeRoutes).
+
+    Args:
+        mode: internal mode name (driving, walking, transit, bicycling, two_wheeler)
+        departure_time: RFC 3339 string, e.g. "2026-05-18T09:00:00+09:00".
+            For transit: affects schedule-based routing (required for accurate results).
+            For driving: affects traffic estimates.
+            For walking/bicycling: ignored by API.
+    Returns:
+        (mode, {"duration_min": float, "distance_km": float}) or (mode, None)
+    """
+    api_mode = MODE_TO_API.get(mode)
+    if not api_mode:
+        return mode, None
+
+    body = {
+        "origin": {
+            "location": {
+                "latLng": {"latitude": origin_lat, "longitude": origin_lng}
+            }
+        },
+        "destination": {
+            "location": {
+                "latLng": {"latitude": dest_lat, "longitude": dest_lng}
+            }
+        },
+        "travelMode": api_mode,
+    }
+
+    if departure_time:
+        body["departureTime"] = departure_time
+
+    headers = {
+        "Content-Type": "application/json",
+        "X-Goog-Api-Key": API_KEY,
+        "X-Goog-FieldMask": ROUTES_FIELD_MASK,
+    }
+
     for attempt in range(max_retries):
         try:
-            resp = requests.get(
-                DIRECTIONS_URL,
-                params={
-                    "origin": f"{origin_lat},{origin_lng}",
-                    "destination": f"{dest_lat},{dest_lng}",
-                    "mode": mode,
-                    "key": API_KEY,
-                },
-            )
+            resp = requests.post(ROUTES_URL, json=body, headers=headers)
             if resp.status_code in (429, 403) and attempt < max_retries - 1:
                 wait = 2 ** (attempt + 1)
-                print(f"Rate limited on directions {mode}, retrying in {wait}s...", file=sys.stderr)
+                print(f"Rate limited on routes {mode}, retrying in {wait}s...", file=sys.stderr)
                 time.sleep(wait)
                 continue
             resp.raise_for_status()
             data = resp.json()
-            if data.get("status") == "OK" and data.get("routes"):
-                leg = data["routes"][0]["legs"][0]
-                return mode, {
-                    "duration_min": round(leg["duration"]["value"] / 60, 1),
-                    "distance_km": round(leg["distance"]["value"] / 1000, 1),
+            routes = data.get("routes", [])
+            if routes:
+                route = routes[0]
+                duration_str = route.get("duration", "0s")
+                duration_sec = int(duration_str.rstrip("s"))
+                distance_m = route.get("distanceMeters", 0)
+                result = {
+                    "duration_min": round(duration_sec / 60, 1),
+                    "distance_km": round(distance_m / 1000, 1),
                 }
+                # Store full leg/step details (transit stops, lines, schedules, etc.)
+                legs = route.get("legs", [])
+                if legs:
+                    result["legs"] = legs
+                return mode, result
             return mode, None
         except Exception as e:
             if attempt < max_retries - 1:
                 time.sleep(2 ** (attempt + 1))
                 continue
-            print(f"WARNING: Directions API error for mode={mode}: {e}", file=sys.stderr)
+            print(f"WARNING: Routes API error for mode={mode}: {e}", file=sys.stderr)
             return mode, None
     return mode, None
 
 
-def get_directions(origin_lat, origin_lng, dest_lat, dest_lng):
-    """Get directions for all transport modes between two coordinates (parallel)."""
+# Backward-compatible alias
+get_single_direction = get_single_route
+
+
+def get_directions(origin_lat, origin_lng, dest_lat, dest_lng, departure_time=None,
+                   country_code=None, available_modes=None):
+    """Get routes for all transport modes between two coordinates (parallel).
+
+    Args:
+        departure_time: optional RFC 3339 string. Only passed to transit mode
+            (schedule-based routing). Driving with departure_time triggers
+            traffic-aware routing which requires a higher billing tier.
+        country_code: optional ISO 3166-1 alpha-2 code (e.g. "JP", "TW").
+            When provided, skips modes known to be unsupported in that country
+            (saves API calls and avoids empty results). See routes_coverage.py.
+        available_modes: optional list of mode names to query (e.g. ["walking", "transit"]).
+            When provided, ONLY these modes are queried — saves API calls when
+            the user has no access to certain transport (e.g. no car, no scooter).
+    """
     if not API_KEY:
         return {"modes": {}, "source": "unavailable"}
 
+    # Determine which modes to query
+    modes_to_query = list(available_modes) if available_modes else list(TRANSPORT_MODES)
+    skipped_modes = []
+    if country_code:
+        try:
+            from routes_coverage import get_supported_modes
+            coverage = get_supported_modes(country_code)
+            skipped_modes = [m for m in modes_to_query if not coverage["modes"].get(m, True)]
+            modes_to_query = [m for m in modes_to_query if m not in skipped_modes]
+            if skipped_modes:
+                print(f"Skipping unsupported modes for {country_code}: {skipped_modes}",
+                      file=sys.stderr)
+        except ImportError:
+            pass  # routes_coverage.py not available, query all modes
+
     modes = {}
-    with ThreadPoolExecutor(max_workers=len(TRANSPORT_MODES)) as pool:
-        futures = {
-            pool.submit(get_single_direction, origin_lat, origin_lng, dest_lat, dest_lng, mode): mode
-            for mode in TRANSPORT_MODES
-        }
+    with ThreadPoolExecutor(max_workers=max(len(modes_to_query), 1)) as pool:
+        futures = {}
+        for mode in modes_to_query:
+            # Only pass departure_time for transit (schedule-dependent).
+            # Other modes with departure_time trigger higher billing tiers.
+            dep = departure_time if mode == "transit" else None
+            fut = pool.submit(get_single_route, origin_lat, origin_lng, dest_lat, dest_lng,
+                              mode, dep)
+            futures[fut] = mode
+
         for f in as_completed(futures):
             mode, result = f.result()
             if result:
                 modes[mode] = result
 
-    return {"modes": modes, "source": "api"}
+    result = {"modes": modes, "source": "api"}
+    if skipped_modes:
+        result["skipped_modes"] = skipped_modes
+    return result
 
 
 def batched(items, batch_size):
@@ -198,30 +310,32 @@ def resolve_places_batched(queries, field_mask=None):
     return results
 
 
-def compute_routes_batched(route_specs):
+def compute_routes_batched(route_specs, available_modes=None):
     """Compute all routes using batched parallelism.
 
     route_specs: list of (from_idx, to_idx, origin_lat, origin_lng, dest_lat, dest_lng)
+                 or      (from_idx, to_idx, origin_lat, origin_lng, dest_lat, dest_lng, departure_time)
+    available_modes: optional list of mode names to query (passed to get_directions)
     """
     results = [None] * len(route_specs)
 
-    # Each route queries 3 modes in parallel internally, so effective requests
-    # per route = 3. Batch size accounts for this: 15 batch × 3 modes = 45 QPS peak,
-    # within the 50 QPS Directions API limit.
-    for batch_idx, batch in enumerate(batched(list(enumerate(route_specs)), DIRECTIONS_BATCH_SIZE)):
+    for batch_idx, batch in enumerate(batched(list(enumerate(route_specs)), ROUTES_BATCH_SIZE)):
         if batch_idx > 0:
-            time.sleep(DIRECTIONS_BATCH_DELAY)
+            time.sleep(ROUTES_BATCH_DELAY)
 
         with ThreadPoolExecutor(max_workers=len(batch)) as pool:
             futures = {}
-            for list_idx, (fr, to, olat, olng, dlat, dlng) in batch:
-                fut = pool.submit(get_directions, olat, olng, dlat, dlng)
+            for list_idx, spec in batch:
+                fr, to, olat, olng, dlat, dlng = spec[:6]
+                dep_time = spec[6] if len(spec) > 6 else None
+                fut = pool.submit(get_directions, olat, olng, dlat, dlng, dep_time,
+                                  available_modes=available_modes)
                 futures[fut] = (list_idx, fr, to)
 
             for f in as_completed(futures):
                 list_idx, fr, to = futures[f]
-                directions = f.result()
-                results[list_idx] = {"from": fr, "to": to, **directions}
+                route_result = f.result()
+                results[list_idx] = {"from": fr, "to": to, **route_result}
 
     return results
 
@@ -259,15 +373,24 @@ def main():
     for r in input_data.get("routes", []):
         fr, to = r["from"], r["to"]
         origin, dest = places[fr], places[to]
+        dep_time = r.get("departure_time")
         if origin.get("lat") and dest.get("lat"):
-            route_specs.append((fr, to, origin["lat"], origin["lng"], dest["lat"], dest["lng"]))
+            spec = (fr, to, origin["lat"], origin["lng"], dest["lat"], dest["lng"])
+            if dep_time:
+                spec = spec + (dep_time,)
+            route_specs.append(spec)
         else:
             route_specs.append(None)
+
+    # Read available_modes from input (limits which modes are queried)
+    avail_modes = input_data.get("available_modes")
+    if avail_modes:
+        print(f"Querying only modes: {avail_modes}", file=sys.stderr)
 
     valid_specs = [(i, s) for i, s in enumerate(route_specs) if s is not None]
     t3 = time.time()
     if valid_specs:
-        route_results = compute_routes_batched([s for _, s in valid_specs])
+        route_results = compute_routes_batched([s for _, s in valid_specs], available_modes=avail_modes)
         routes = [None] * len(route_specs)
         for result, (orig_idx, _) in zip(route_results, valid_specs):
             routes[orig_idx] = result
