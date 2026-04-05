@@ -8,7 +8,8 @@ trek-src/
 __pycache__/
 .venv/
 
+# Trip data (local only — deploy.sh reads local files, pushes HTML to gh-pages)
+trips/
+
 # Build artifacts (deploy.sh regenerates)
-trips/*/index.html
 index.html
-trips/*/calendar.ics
