@@ -94,7 +94,7 @@ def main():
     # Load existing cache
     cache = {}
     if os.path.exists(cache_path):
-        with open(cache_path) as f:
+        with open(cache_path, encoding="utf-8") as f:
             cache = json.load(f)
         print(f"Loaded existing cache with {len(cache)} entries", file=sys.stderr)
 
@@ -136,7 +136,7 @@ def main():
 
     # Write cache
     os.makedirs(os.path.dirname(cache_path), exist_ok=True)
-    with open(cache_path, "w") as f:
+    with open(cache_path, "w", encoding="utf-8") as f:
         json.dump(cache, f, ensure_ascii=False, indent=2)
 
     print(f"\nDone: {resolved_count} resolved, {len(failed)} failed, {len(cache)} total in cache.",

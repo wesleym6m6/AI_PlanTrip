@@ -38,6 +38,16 @@ def load_json_optional(path):
 
 def main():
     trip_dir = pathlib.Path(sys.argv[1])
+
+    sys.path.insert(0, str(pathlib.Path(__file__).parent))
+    from validate_trip import validate
+    errors = validate(trip_dir)
+    if errors:
+        print(f"Validation failed ({len(errors)} error(s)):", file=sys.stderr)
+        for e in errors:
+            print(f"  \u2717 {e}", file=sys.stderr)
+        sys.exit(1)
+
     data_dir = trip_dir / "data"
 
     trip = load_json(data_dir / "trip.json")

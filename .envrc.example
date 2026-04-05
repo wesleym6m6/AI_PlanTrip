@@ -1,3 +1,4 @@
 export GOOGLE_MAPS_API_KEY="your-api-key-here"
+export SERPAPI_API_KEY="your-serpapi-key-here"
 export VIRTUAL_ENV="$PWD/.venv"
 PATH_add "$VIRTUAL_ENV/bin"
