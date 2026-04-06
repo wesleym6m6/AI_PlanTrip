@@ -1,0 +1,7 @@
+{
+  "candidates": [
+    {"name": "FotoShop", "maps_query": "FotoShop, Tainan, Taiwan"},
+    {"name": "South Crossing", "maps_query": "South Crossing independent bookstore, Tainan, Taiwan"}
+  ],
+  "cache_path": "trips/tainan-2026-04/data/places_cache.json"
+}

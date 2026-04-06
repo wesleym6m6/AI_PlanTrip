@@ -89,8 +89,8 @@ def generate_ics(trip_dir: str | pathlib.Path) -> pathlib.Path:
     trip_dir = pathlib.Path(trip_dir)
     data_dir = trip_dir / "data"
 
-    trip = json.loads((data_dir / "trip.json").read_text())
-    itinerary = json.loads((data_dir / "itinerary.json").read_text())
+    trip = json.loads((data_dir / "trip.json").read_text(encoding="utf-8"))
+    itinerary = json.loads((data_dir / "itinerary.json").read_text(encoding="utf-8"))
 
     slug = trip.get("slug", trip_dir.name)
     title = trip.get("title", slug)
@@ -116,7 +116,7 @@ def generate_ics(trip_dir: str | pathlib.Path) -> pathlib.Path:
     utc_offset_str = None
     cache_path = data_dir / "places_cache.json"
     if cache_path.exists():
-        cache = json.loads(cache_path.read_text())
+        cache = json.loads(cache_path.read_text(encoding="utf-8"))
         for entry in cache.values():
             offset = entry.get("utc_offset_minutes")
             if offset is not None:

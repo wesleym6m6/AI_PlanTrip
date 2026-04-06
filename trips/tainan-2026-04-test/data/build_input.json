@@ -1,0 +1,63 @@
+{
+  "cache_path": "trips/tainan-2026-04/data/places_cache.json",
+  "output_path": "trips/tainan-2026-04/data/itinerary.json",
+  "days": [
+    {
+      "day": 1, "date": "2026-04-17",
+      "title": "奇美博物館 × 小吃掃街 × 森根 × Moonrock",
+      "subtitle": "仁德 → 中西區",
+      "places": [
+        {"name": "Tainan", "type": "transport", "time": "07:02", "note": "高鐵新竹出發", "title": "高鐵新竹→台南", "lat": 24.8069, "lng": 120.9876},
+        {"name": "Tainan", "type": "transport", "time": "08:20", "note": "抵達台南高鐵站，共享機車→奇美", "title": "台南高鐵站"},
+        {"name": "Chimei Museum", "type": "spot", "time": "09:30", "note": "法老特展（已預約）+ 10:30 專人導覽"},
+        {"name": "deepblue-cafe Flagship Store", "type": "food", "time": "12:00", "note": "千層蛋糕午餐（奇美博物館店）", "title": "深藍咖啡館（奇美店）", "lat": 22.9345, "lng": 120.2260},
+        {"name": "Chimei Museum", "type": "spot", "time": "14:00", "note": "VR 沉浸體驗《消失的法老》（已預約）", "title": "奇美博物館 VR 體驗"},
+        {"name": "Silks Place Tainan", "type": "hotel", "time": "15:40", "note": "check-in，放行李", "title": "晶英酒店 check-in"},
+        {"name": "矮仔成蝦仁飯", "type": "food", "time": "16:10", "note": "必比登，台南經典蝦仁飯"},
+        {"name": "A Wen Rice Cake", "type": "food", "time": "16:30", "note": "必比登，煎恰恰米粿", "title": "阿文米粿"},
+        {"name": "Dark Mode Café", "type": "drink", "time": "17:00", "note": "咖啡+銅板泡芙，休息"},
+        {"name": "森根 Sengen Studio", "type": "food", "time": "18:15", "note": "已預約，老宅義式，僅現金", "title": "森根 Sengen Studio", "lat": 22.9899, "lng": 120.1996},
+        {"name": "Moon Wave", "type": "drink", "time": "20:15", "note": "老宅咖啡，營業至深夜", "title": "月波"},
+        {"name": "Moonrock", "type": "drink", "time": "22:00", "note": "已預約，亞洲百大酒吧"},
+        {"name": "Silks Place Tainan", "type": "hotel", "time": "00:00", "note": "回飯店休息", "title": "晶英酒店"}
+      ]
+    },
+    {
+      "day": 2, "date": "2026-04-18",
+      "title": "南美館 × 選物店 × 阿霞 × 深夜甜點",
+      "subtitle": "中西區深度",
+      "places": [
+        {"name": "明和菜粽", "type": "food", "time": "07:00", "note": "前一天電話預訂（06-2266158），外帶回飯店"},
+        {"name": "Silks Place Tainan", "type": "hotel", "time": "07:30", "note": "飯店早餐＋明和菜粽", "title": "晶英酒店早餐"},
+        {"name": "Silks Place Tainan", "type": "hotel", "time": "10:30", "note": "check-out，行李寄櫃台", "title": "晶英酒店 check-out"},
+        {"name": "Tainan Art Gallery Building 1", "type": "spot", "time": "10:50", "note": "「恁兜攏按怎拜？從餐桌到神桌」展覽", "title": "臺南市美術館 1 館"},
+        {"name": "Fu Tai Table (3rd Gen)", "type": "food", "time": "12:00", "note": "必比登，傳統飯桌菜個人份", "title": "福泰飯桌第三代"},
+        {"name": "鳥飛古物店", "type": "spot", "time": "13:00", "note": "台日老件家具＋民藝品，13:00 開門"},
+        {"name": "北山雜貨（店休請看粉專）", "type": "spot", "time": "13:40", "note": "日本窯區直選器皿", "title": "北山雜貨"},
+        {"name": "Mi Cazuela 移動的鍋子", "type": "food", "time": "14:20", "note": "巴斯克蛋糕（13:00 開，建議早到排隊）", "title": "Mi Cazuela"},
+        {"name": "桑原商店", "type": "drink", "time": "15:10", "note": "昭和風日式木屋，手工霜淇淋"},
+        {"name": "Silks Place Tainan", "type": "hotel", "time": "16:00", "note": "回晶英取行李", "title": "晶英取行李"},
+        {"name": "Grand Banyan Hotel", "type": "hotel", "time": "16:30", "note": "check-in，休息", "title": "禧榕軒 check-in"},
+        {"name": "A SHA Tainan Main Restaurant", "type": "food", "time": "18:00", "note": "雙人套餐 $2,388（90 min）", "title": "阿霞飯店"},
+        {"name": "餵食三刻（內有貓貓，每月公休公告於ig ）", "type": "food", "time": "20:00", "note": "深夜甜點 18:30-02:00，白玉抹茶塔", "title": "餵食三刻"},
+        {"name": "Grand Banyan Hotel", "type": "hotel", "time": "21:00", "note": "回飯店休息", "title": "禧榕軒"}
+      ]
+    },
+    {
+      "day": 3, "date": "2026-04-19",
+      "title": "選物 × 書店 × 真夏收尾",
+      "subtitle": "中西區 → 東區",
+      "places": [
+        {"name": "Grand Banyan Hotel", "type": "hotel", "time": "09:00", "note": "早午餐（退房後仍可享用 3hr）", "title": "禧榕軒早午餐"},
+        {"name": "LURE Late Late Breakfast", "type": "food", "time": "10:50", "note": "白天早午餐甜點", "title": "鹿耳"},
+        {"name": "餐桌上的鹿早", "type": "spot", "time": "11:30", "note": "簡約手工器皿選物"},
+        {"name": "又又美FotoShop", "type": "spot", "time": "12:00", "note": "復古選物＋底片拍貼體驗", "title": "又又美 FotoShop"},
+        {"name": "又又美FotoShop", "type": "food", "time": "12:40", "note": "正興街、海安路沿路覓食", "title": "正興街隨興午餐", "lat": 22.9878, "lng": 120.1988},
+        {"name": "無有為 Bookstore & Café Nothing", "type": "spot", "time": "14:00", "note": "獨立書店＋台灣茶，東區近火車站", "title": "南渡策室 × 無有為"},
+        {"name": "Grand Banyan Hotel", "type": "hotel", "time": "15:30", "note": "回禧榕軒取行李", "title": "禧榕軒取行李"},
+        {"name": "和洋亭 真夏", "type": "food", "time": "17:00", "note": "已預約，日式漢堡排套餐 $380 起"},
+        {"name": "Tainan", "type": "transport", "time": "18:24", "note": "自強號→新竹", "title": "台南火車站→新竹"}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "candidates": [
+    {"name": "Mi Cazuela", "maps_query": "Mi Cazuela, Tainan, Taiwan"},
+    {"name": "ByeByeBlues", "maps_query": "ByeByeBlues, Tainan, Taiwan"}
+  ],
+  "cache_path": "trips/tainan-2026-04/data/places_cache.json"
+}

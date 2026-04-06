@@ -1,0 +1,31 @@
+{
+  "candidates": [
+    {"name": "台南晶英酒店", "maps_query": "台南晶英酒店 Silks Place Tainan, Tainan, Taiwan"},
+    {"name": "禧榕軒大飯店", "maps_query": "禧榕軒大飯店 Grand Banyan Hotel, Tainan, Taiwan"},
+    {"name": "阿霞飯店", "maps_query": "阿霞飯店, Tainan, Taiwan"},
+    {"name": "森根 Sengen Studio", "maps_query": "森根 Sengen Studio, Tainan, Taiwan"},
+    {"name": "福泰飯桌第三代", "maps_query": "福泰飯桌第三代, Tainan, Taiwan"},
+    {"name": "矮仔成蝦仁飯", "maps_query": "矮仔成蝦仁飯, Tainan, Taiwan"},
+    {"name": "阿文米粿", "maps_query": "阿文米粿, Tainan, Taiwan"},
+    {"name": "明和菜粽", "maps_query": "明和菜粽, Tainan, Taiwan"},
+    {"name": "和洋亭 真夏", "maps_query": "和洋亭 真夏, Tainan, Taiwan"},
+    {"name": "狸小路手作烘焙", "maps_query": "狸小路手作烘焙, Tainan, Taiwan"},
+    {"name": "深藍咖啡館", "maps_query": "深藍咖啡館, Tainan, Taiwan"},
+    {"name": "克林姆之屋", "maps_query": "克林姆之屋, Tainan, Taiwan"},
+    {"name": "餵食三刻", "maps_query": "餵食三刻, Tainan, Taiwan"},
+    {"name": "鹿耳深夜甜點", "maps_query": "鹿耳深夜甜點, Tainan, Taiwan"},
+    {"name": "桑原商店", "maps_query": "桑原商店, Tainan, Taiwan"},
+    {"name": "Dark Mode Café", "maps_query": "Dark Mode Café, Tainan, Taiwan"},
+    {"name": "月波", "maps_query": "月波 Moonwave, Tainan, Taiwan"},
+    {"name": "鳥飛古物店", "maps_query": "鳥飛古物店, Tainan, Taiwan"},
+    {"name": "北山雜貨", "maps_query": "北山雜貨 Kitayama, Tainan, Taiwan"},
+    {"name": "餐桌上的鹿早", "maps_query": "餐桌上的鹿早, Tainan, Taiwan"},
+    {"name": "白做研究所", "maps_query": "白做研究所 White Do, Tainan, Taiwan"},
+    {"name": "奇美博物館", "maps_query": "奇美博物館 Chimei Museum, Tainan, Taiwan"},
+    {"name": "臺南市美術館1館", "maps_query": "臺南市美術館1館, Tainan, Taiwan"},
+    {"name": "Moonrock", "maps_query": "Moonrock Bar, Tainan, Taiwan"},
+    {"name": "台南高鐵站", "maps_query": "台南高鐵站, Tainan, Taiwan"},
+    {"name": "台南火車站", "maps_query": "台南火車站, Tainan, Taiwan"}
+  ],
+  "cache_path": "trips/tainan-2026-04/data/places_cache.json"
+}

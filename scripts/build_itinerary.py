@@ -43,7 +43,7 @@ import sys
 
 
 def load_cache(path):
-    with open(path) as f:
+    with open(path, encoding="utf-8") as f:
         return json.load(f)
 
 
@@ -139,7 +139,7 @@ def build_place_entry(place_input, by_exact_name, entries):
 
 
 def main():
-    input_data = json.load(sys.stdin)
+    input_data = json.loads(sys.stdin.buffer.read().decode("utf-8"))
     cache_path = input_data["cache_path"]
     output_path = input_data.get("output_path")
 
@@ -176,7 +176,7 @@ def main():
         sys.exit(1)
 
     if output_path:
-        with open(output_path, "w") as f:
+        with open(output_path, "w", encoding="utf-8") as f:
             json.dump(itinerary, f, ensure_ascii=False, indent=2)
         print(f"Written: {output_path}")
     else:

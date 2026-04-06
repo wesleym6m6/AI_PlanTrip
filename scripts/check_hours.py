@@ -220,10 +220,10 @@ def main():
     trip_dir = Path(sys.argv[1])
     data_dir = trip_dir / "data"
 
-    trip_json = json.loads((data_dir / "trip.json").read_text())
-    itinerary = json.loads((data_dir / "itinerary.json").read_text())
+    trip_json = json.loads((data_dir / "trip.json").read_text(encoding="utf-8"))
+    itinerary = json.loads((data_dir / "itinerary.json").read_text(encoding="utf-8"))
     cache_path = data_dir / "places_cache.json"
-    cache = json.loads(cache_path.read_text()) if cache_path.exists() else {}
+    cache = json.loads(cache_path.read_text(encoding="utf-8")) if cache_path.exists() else {}
 
     start_date = parse_date_range(trip_json.get("date_range", ""))
     if not start_date:

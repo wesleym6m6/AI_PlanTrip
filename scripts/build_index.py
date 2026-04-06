@@ -16,7 +16,7 @@ TRIPS_DIR = ROOT / "trips"
 def main():
     trips = []
     for trip_json in sorted(TRIPS_DIR.glob("*/data/trip.json")):
-        data = json.loads(trip_json.read_text())
+        data = json.loads(trip_json.read_text(encoding="utf-8"))
         if data.get("archived"):
             continue
         trips.append(data)
@@ -29,7 +29,7 @@ def main():
     html = template.render(trips=trips)
 
     output = ROOT / "index.html"
-    output.write_text(html)
+    output.write_text(html, encoding="utf-8")
     print(f"Built index with {len(trips)} trip(s): {output}")
 
 

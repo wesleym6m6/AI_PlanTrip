@@ -27,12 +27,12 @@ MODE_ICON = {
 
 
 def load_json(path):
-    return json.loads(path.read_text())
+    return json.loads(path.read_text(encoding="utf-8"))
 
 
 def load_json_optional(path):
     if path.exists():
-        return json.loads(path.read_text())
+        return json.loads(path.read_text(encoding="utf-8"))
     return []
 
 
@@ -50,14 +50,7 @@ def main():
 
     data_dir = trip_dir / "data"
 
-    # Validate before render
-    from validate_trip import main as validate_main
-    sys.argv_backup = sys.argv
-    sys.argv = ["validate_trip.py", str(trip_dir)]
-    try:
-        validate_main()
-    finally:
-        sys.argv = sys.argv_backup
+    # Validate before render (already done above, skip duplicate call)
 
     trip = load_json(data_dir / "trip.json")
     itinerary = load_json(data_dir / "itinerary.json")
@@ -130,7 +123,7 @@ def main():
     )
 
     output = trip_dir / "index.html"
-    output.write_text(html)
+    output.write_text(html, encoding="utf-8")
     print(f"Rendered: {output}")
 
     # Generate ICS calendar file

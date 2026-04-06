@@ -1,0 +1,2459 @@
+{
+  "days": [
+    {
+      "day": 1,
+      "date": "2026-04-17",
+      "title": "奇美博物館 × 小吃掃街 × 森根 × Moonrock",
+      "subtitle": "仁德 → 中西區",
+      "places": [
+        {
+          "type": "transport",
+          "title": "高鐵新竹→台南",
+          "note": "高鐵新竹出發",
+          "maps_query": "24.8069,120.9876",
+          "place_id": null,
+          "lat": 24.8069,
+          "lng": 120.9876,
+          "display_name": "高鐵新竹→台南",
+          "time": "07:02"
+        },
+        {
+          "type": "transport",
+          "title": "台南高鐵站",
+          "note": "抵達台南高鐵站，共享機車→奇美",
+          "maps_query": "台南火車站, Tainan, Taiwan",
+          "place_id": "ChIJCaqM84x2bjQRRqzST46i6cM",
+          "lat": 22.9970861,
+          "lng": 120.21298319999998,
+          "display_name": "Tainan",
+          "time": "08:20"
+        },
+        {
+          "type": "spot",
+          "title": "Chimei Museum",
+          "note": "法老特展（已預約）+ 10:30 專人導覽",
+          "maps_query": "奇美博物館 Chimei Museum, Tainan, Taiwan",
+          "place_id": "ChIJq6qqqnp0bjQRpvTHZeYTjKg",
+          "lat": 22.9345608,
+          "lng": 120.2260268,
+          "display_name": "Chimei Museum",
+          "time": "09:30"
+        },
+        {
+          "type": "food",
+          "title": "深藍咖啡館（奇美店）",
+          "note": "千層蛋糕午餐（奇美博物館店）",
+          "maps_query": "22.9345,120.226",
+          "place_id": null,
+          "lat": 22.9345,
+          "lng": 120.226,
+          "display_name": "深藍咖啡館（奇美店）",
+          "time": "12:00"
+        },
+        {
+          "type": "spot",
+          "title": "奇美博物館 VR 體驗",
+          "note": "VR 沉浸體驗《消失的法老》（已預約）",
+          "maps_query": "奇美博物館 Chimei Museum, Tainan, Taiwan",
+          "place_id": "ChIJq6qqqnp0bjQRpvTHZeYTjKg",
+          "lat": 22.9345608,
+          "lng": 120.2260268,
+          "display_name": "Chimei Museum",
+          "time": "14:00"
+        },
+        {
+          "type": "hotel",
+          "title": "晶英酒店 check-in",
+          "note": "check-in，放行李",
+          "maps_query": "台南晶英酒店 Silks Place Tainan, Tainan, Taiwan",
+          "place_id": "ChIJDzX2d3x2bjQRha-HOsf7LIA",
+          "lat": 22.987343,
+          "lng": 120.1994318,
+          "display_name": "Silks Place Tainan",
+          "time": "15:40"
+        },
+        {
+          "type": "food",
+          "title": "矮仔成蝦仁飯",
+          "note": "必比登，台南經典蝦仁飯",
+          "maps_query": "矮仔成蝦仁飯, Tainan, Taiwan",
+          "place_id": "ChIJxS-IQnp2bjQRMNnOsP0ijkg",
+          "lat": 22.9889795,
+          "lng": 120.19522919999999,
+          "display_name": "矮仔成蝦仁飯",
+          "time": "16:10"
+        },
+        {
+          "type": "food",
+          "title": "阿文米粿",
+          "note": "必比登，煎恰恰米粿",
+          "maps_query": "阿文米粿, Tainan, Taiwan",
+          "place_id": "ChIJUaIJ5Hp2bjQRkNIhVzOVI34",
+          "lat": 22.9904781,
+          "lng": 120.1960822,
+          "display_name": "A Wen Rice Cake",
+          "time": "16:30"
+        },
+        {
+          "type": "drink",
+          "title": "Dark Mode Café",
+          "note": "咖啡+銅板泡芙，休息",
+          "maps_query": "Dark Mode Café, Tainan, Taiwan",
+          "place_id": "ChIJV3fWmE53bjQRaQVAAv-LqF8",
+          "lat": 22.982229099999998,
+          "lng": 120.1988191,
+          "display_name": "Dark Mode Café",
+          "time": "17:00"
+        },
+        {
+          "type": "food",
+          "title": "森根 Sengen Studio",
+          "note": "已預約，老宅義式，僅現金",
+          "maps_query": "22.9899,120.1996",
+          "place_id": null,
+          "lat": 22.9899,
+          "lng": 120.1996,
+          "display_name": "森根 Sengen Studio",
+          "time": "18:15"
+        },
+        {
+          "type": "drink",
+          "title": "月波",
+          "note": "老宅咖啡，營業至深夜",
+          "maps_query": "月波 Moonwave, Tainan, Taiwan",
+          "place_id": "ChIJw3taFcJ3bjQR0qvkFrMfO4E",
+          "lat": 22.983958599999998,
+          "lng": 120.21687479999999,
+          "display_name": "Moon Wave",
+          "time": "20:15"
+        },
+        {
+          "type": "drink",
+          "title": "Moonrock",
+          "note": "已預約，亞洲百大酒吧",
+          "maps_query": "Moonrock Bar, Tainan, Taiwan",
+          "place_id": "ChIJ0RYVUJ13bjQRHTxc4fv1wBs",
+          "lat": 22.998893,
+          "lng": 120.2100379,
+          "display_name": "Moonrock",
+          "time": "22:00"
+        },
+        {
+          "type": "hotel",
+          "title": "晶英酒店",
+          "note": "回飯店休息",
+          "maps_query": "台南晶英酒店 Silks Place Tainan, Tainan, Taiwan",
+          "place_id": "ChIJDzX2d3x2bjQRha-HOsf7LIA",
+          "lat": 22.987343,
+          "lng": 120.1994318,
+          "display_name": "Silks Place Tainan",
+          "time": "23:59"
+        }
+      ],
+      "travel": [
+        {
+          "from": 0,
+          "to": 1,
+          "modes": {
+            "driving": {
+              "duration_min": 157.7,
+              "distance_km": 237.5
+            },
+            "transit": {
+              "duration_min": 151.8,
+              "distance_km": 270.5,
+              "transit_steps": [
+                {
+                  "stopDetails": {
+                    "arrivalStop": {
+                      "name": "高鐵新竹站",
+                      "location": {
+                        "latLng": {
+                          "latitude": 24.80714,
+                          "longitude": 121.04047999999999
+                        }
+                      }
+                    },
+                    "arrivalTime": "2026-04-17T00:13:06Z",
+                    "departureStop": {
+                      "name": "新竹高工",
+                      "location": {
+                        "latLng": {
+                          "latitude": 24.809288499999997,
+                          "longitude": 120.98331739999999
+                        }
+                      }
+                    },
+                    "departureTime": "2026-04-16T23:53:28Z"
+                  },
+                  "localizedValues": {
+                    "arrivalTime": {
+                      "time": {},
+                      "timeZone": "Asia/Taipei"
+                    },
+                    "departureTime": {
+                      "time": {},
+                      "timeZone": "Asia/Taipei"
+                    }
+                  },
+                  "headsign": "勝利八街總站",
+                  "transitLine": {
+                    "agencies": [
+                      {
+                        "name": "新竹縣快捷公車",
+                        "uri": "http://www.universe.com.tw/hts/"
+                      }
+                    ],
+                    "name": "勝利八街-陽明交大博愛校區",
+                    "nameShort": "快捷9號",
+                    "vehicle": {
+                      "name": {
+                        "text": "公車"
+                      },
+                      "type": "BUS",
+                      "iconUri": "//maps.gstatic.com/mapfiles/transit/iw2/6/bus2.png"
+                    }
+                  },
+                  "stopCount": 12
+                },
+                {
+                  "stopDetails": {
+                    "arrivalStop": {
+                      "name": "台南",
+                      "location": {
+                        "latLng": {
+                          "latitude": 22.92485,
+                          "longitude": 120.28632
+                        }
+                      }
+                    },
+                    "arrivalTime": "2026-04-17T01:32:00Z",
+                    "departureStop": {
+                      "name": "新竹",
+                      "location": {
+                        "latLng": {
+                          "latitude": 24.80809,
+                          "longitude": 121.04015000000001
+                        }
+                      }
+                    },
+                    "departureTime": "2026-04-17T00:22:00Z"
+                  },
+                  "localizedValues": {
+                    "arrivalTime": {
+                      "time": {},
+                      "timeZone": "Asia/Taipei"
+                    },
+                    "departureTime": {
+                      "time": {},
+                      "timeZone": "Asia/Taipei"
+                    }
+                  },
+                  "headsign": "往左營",
+                  "transitLine": {
+                    "agencies": [
+                      {
+                        "name": "台灣高鐵",
+                        "uri": "http://www.thsrc.com.tw/"
+                      }
+                    ],
+                    "name": "高鐵",
+                    "nameShort": "High-Speed Rail",
+                    "vehicle": {
+                      "name": {
+                        "text": "高速火車"
+                      },
+                      "type": "HIGH_SPEED_TRAIN",
+                      "iconUri": "//maps.gstatic.com/mapfiles/transit/iw2/6/rail2.png",
+                      "localIconUri": "//maps.gstatic.com/mapfiles/transit/iw2/6/tw-highspeed-train.png"
+                    }
+                  },
+                  "stopCount": 4
+                },
+                {
+                  "stopDetails": {
+                    "arrivalStop": {
+                      "name": "台南車站",
+                      "location": {
+                        "latLng": {
+                          "latitude": 22.997139999999998,
+                          "longitude": 120.21297
+                        }
+                      }
+                    },
+                    "arrivalTime": "2026-04-17T02:16:00Z",
+                    "departureStop": {
+                      "name": "沙崙",
+                      "location": {
+                        "latLng": {
+                          "latitude": 22.92385,
+                          "longitude": 120.28640000000001
+                        }
+                      }
+                    },
+                    "departureTime": "2026-04-17T01:53:00Z"
+                  },
+                  "localizedValues": {
+                    "arrivalTime": {
+                      "time": {},
+                      "timeZone": "Asia/Taipei"
+                    },
+                    "departureTime": {
+                      "time": {},
+                      "timeZone": "Asia/Taipei"
+                    }
+                  },
+                  "headsign": "往臺南",
+                  "transitLine": {
+                    "agencies": [
+                      {
+                        "name": "台灣鐵路管理局",
+                        "uri": "http://www.railway.gov.tw/"
+                      }
+                    ],
+                    "name": "區間車",
+                    "nameShort": "Local Train",
+                    "vehicle": {
+                      "name": {
+                        "text": "長途列車"
+                      },
+                      "type": "LONG_DISTANCE_TRAIN",
+                      "iconUri": "//maps.gstatic.com/mapfiles/transit/iw2/6/rail2.png",
+                      "localIconUri": "//maps.gstatic.com/mapfiles/transit/iw2/6/tw-train.png"
+                    }
+                  },
+                  "stopCount": 6
+                }
+              ]
+            },
+            "walking": {
+              "duration_min": 3298.6,
+              "distance_km": 240.0
+            }
+          },
+          "source": "api",
+          "recommended_mode": "driving"
+        },
+        {
+          "from": 1,
+          "to": 2,
+          "modes": {
+            "driving": {
+              "duration_min": 23.8,
+              "distance_km": 9.4
+            },
+            "walking": {
+              "duration_min": 106.5,
+              "distance_km": 7.6
+            },
+            "transit": {
+              "duration_min": 38.6,
+              "distance_km": 11.3,
+              "transit_steps": [
+                {
+                  "stopDetails": {
+                    "arrivalStop": {
+                      "name": "奇美博物館",
+                      "location": {
+                        "latLng": {
+                          "latitude": 22.9362608,
+                          "longitude": 120.22817719999999
+                        }
+                      }
+                    },
+                    "arrivalTime": "2026-04-17T00:56:06Z",
+                    "departureStop": {
+                      "name": "臺南火車站(成功路B)",
+                      "location": {
+                        "latLng": {
+                          "latitude": 22.99729,
+                          "longitude": 120.2107
+                        }
+                      }
+                    },
+                    "departureTime": "2026-04-17T00:26:17Z"
+                  },
+                  "localizedValues": {
+                    "arrivalTime": {
+                      "time": {},
+                      "timeZone": "Asia/Taipei"
+                    },
+                    "departureTime": {
+                      "time": {},
+                      "timeZone": "Asia/Taipei"
+                    }
+                  },
+                  "headsign": "關廟轉運站",
+                  "transitLine": {
+                    "agencies": [
+                      {
+                        "name": "興南客運",
+                        "uri": "http://snnew.myweb.hinet.net/main.htm"
+                      }
+                    ],
+                    "name": "臺南轉運站-關廟轉運站",
+                    "nameShort": "紅3繞駛長榮大學",
+                    "vehicle": {
+                      "name": {
+                        "text": "公車"
+                      },
+                      "type": "BUS",
+                      "iconUri": "//maps.gstatic.com/mapfiles/transit/iw2/6/bus2.png"
+                    }
+                  },
+                  "stopCount": 18
+                }
+              ]
+            }
+          },
+          "source": "api",
+          "recommended_mode": "driving"
+        },
+        {
+          "from": 2,
+          "to": 3,
+          "modes": {
+            "driving": {
+              "duration_min": 0.0,
+              "distance_km": 0.0
+            },
+            "walking": {
+              "duration_min": 0.0,
+              "distance_km": 0.0
+            },
+            "transit": {
+              "duration_min": 0.0,
+              "distance_km": 0.0
+            }
+          },
+          "source": "api",
+          "recommended_mode": "driving"
+        },
+        {
+          "from": 3,
+          "to": 4,
+          "modes": {
+            "driving": {
+              "duration_min": 0.0,
+              "distance_km": 0.0
+            },
+            "transit": {
+              "duration_min": 0.0,
+              "distance_km": 0.0
+            },
+            "walking": {
+              "duration_min": 0.0,
+              "distance_km": 0.0
+            }
+          },
+          "source": "api",
+          "recommended_mode": "driving"
+        },
+        {
+          "from": 4,
+          "to": 5,
+          "modes": {
+            "walking": {
+              "duration_min": 104.7,
+              "distance_km": 7.5
+            },
+            "transit": {
+              "duration_min": 31.8,
+              "distance_km": 8.7,
+              "transit_steps": [
+                {
+                  "stopDetails": {
+                    "arrivalStop": {
+                      "name": "新光三越新天地",
+                      "location": {
+                        "latLng": {
+                          "latitude": 22.987098,
+                          "longitude": 120.1977
+                        }
+                      }
+                    },
+                    "arrivalTime": "2026-04-17T06:31:58Z",
+                    "departureStop": {
+                      "name": "奇美博物館",
+                      "location": {
+                        "latLng": {
+                          "latitude": 22.9358041,
+                          "longitude": 120.2211934
+                        }
+                      }
+                    },
+                    "departureTime": "2026-04-17T06:14:50Z"
+                  },
+                  "localizedValues": {
+                    "arrivalTime": {
+                      "time": {},
+                      "timeZone": "Asia/Taipei"
+                    },
+                    "departureTime": {
+                      "time": {},
+                      "timeZone": "Asia/Taipei"
+                    }
+                  },
+                  "headsign": "和順轉運站",
+                  "transitLine": {
+                    "agencies": [
+                      {
+                        "name": "府城客運",
+                        "uri": "http://www.kingwaytek.com/"
+                      }
+                    ],
+                    "name": "和順轉運站-大甲里",
+                    "nameShort": "5延駛大甲里",
+                    "vehicle": {
+                      "name": {
+                        "text": "公車"
+                      },
+                      "type": "BUS",
+                      "iconUri": "//maps.gstatic.com/mapfiles/transit/iw2/6/bus2.png"
+                    }
+                  },
+                  "stopCount": 21
+                }
+              ]
+            },
+            "driving": {
+              "duration_min": 21.6,
+              "distance_km": 8.2
+            }
+          },
+          "source": "api",
+          "recommended_mode": "driving"
+        },
+        {
+          "from": 5,
+          "to": 6,
+          "modes": {
+            "walking": {
+              "duration_min": 10.4,
+              "distance_km": 0.7
+            },
+            "driving": {
+              "duration_min": 4.0,
+              "distance_km": 0.7
+            },
+            "transit": {
+              "duration_min": 10.4,
+              "distance_km": 0.7
+            }
+          },
+          "source": "api",
+          "recommended_mode": "walking"
+        },
+        {
+          "from": 6,
+          "to": 7,
+          "modes": {
+            "walking": {
+              "duration_min": 3.4,
+              "distance_km": 0.2
+            },
+            "driving": {
+              "duration_min": 1.4,
+              "distance_km": 0.2
+            },
+            "transit": {
+              "duration_min": 3.4,
+              "distance_km": 0.2
+            }
+          },
+          "source": "api",
+          "recommended_mode": "walking"
+        },
+        {
+          "from": 7,
+          "to": 8,
+          "modes": {
+            "driving": {
+              "duration_min": 4.9,
+              "distance_km": 1.2
+            },
+            "walking": {
+              "duration_min": 17.1,
+              "distance_km": 1.2
+            },
+            "transit": {
+              "duration_min": 10.7,
+              "distance_km": 1.3,
+              "transit_steps": [
+                {
+                  "stopDetails": {
+                    "arrivalStop": {
+                      "name": "西門健康立體停車場",
+                      "location": {
+                        "latLng": {
+                          "latitude": 22.982333999999998,
+                          "longitude": 120.19749399999999
+                        }
+                      }
+                    },
+                    "arrivalTime": "2026-04-17T08:38:59Z",
+                    "departureStop": {
+                      "name": "小西門(西門路)",
+                      "location": {
+                        "latLng": {
+                          "latitude": 22.988816999999997,
+                          "longitude": 120.19740999999999
+                        }
+                      }
+                    },
+                    "departureTime": "2026-04-17T08:35:57Z"
+                  },
+                  "localizedValues": {
+                    "arrivalTime": {
+                      "time": {},
+                      "timeZone": "Asia/Taipei"
+                    },
+                    "departureTime": {
+                      "time": {},
+                      "timeZone": "Asia/Taipei"
+                    }
+                  },
+                  "headsign": "崑山科技大學",
+                  "transitLine": {
+                    "agencies": [
+                      {
+                        "name": "府城客運",
+                        "uri": "http://www.kingwaytek.com/"
+                      }
+                    ],
+                    "name": "崑山科大-白鷺灣社區",
+                    "nameShort": "2",
+                    "vehicle": {
+                      "name": {
+                        "text": "公車"
+                      },
+                      "type": "BUS",
+                      "iconUri": "//maps.gstatic.com/mapfiles/transit/iw2/6/bus2.png"
+                    }
+                  },
+                  "stopCount": 4
+                }
+              ]
+            }
+          },
+          "source": "api",
+          "recommended_mode": "driving"
+        },
+        {
+          "from": 8,
+          "to": 9,
+          "modes": {
+            "driving": {
+              "duration_min": 5.2,
+              "distance_km": 1.2
+            },
+            "walking": {
+              "duration_min": 14.7,
+              "distance_km": 1.0
+            },
+            "transit": {
+              "duration_min": 9.0,
+              "distance_km": 1.5,
+              "transit_steps": [
+                {
+                  "stopDetails": {
+                    "arrivalStop": {
+                      "name": "西門友愛街口",
+                      "location": {
+                        "latLng": {
+                          "latitude": 22.991274999999998,
+                          "longitude": 120.19821899999998
+                        }
+                      }
+                    },
+                    "arrivalTime": "2026-04-17T09:07:59Z",
+                    "departureStop": {
+                      "name": "西門健康立體停車場",
+                      "location": {
+                        "latLng": {
+                          "latitude": 22.982162,
+                          "longitude": 120.19776899999998
+                        }
+                      }
+                    },
+                    "departureTime": "2026-04-17T09:05:46Z"
+                  },
+                  "localizedValues": {
+                    "arrivalTime": {
+                      "time": {},
+                      "timeZone": "Asia/Taipei"
+                    },
+                    "departureTime": {
+                      "time": {},
+                      "timeZone": "Asia/Taipei"
+                    }
+                  },
+                  "headsign": "和順轉運站",
+                  "transitLine": {
+                    "agencies": [
+                      {
+                        "name": "府城客運",
+                        "uri": "http://www.kingwaytek.com/"
+                      }
+                    ],
+                    "name": "和順轉運站-市立醫院",
+                    "nameShort": "5",
+                    "vehicle": {
+                      "name": {
+                        "text": "公車"
+                      },
+                      "type": "BUS",
+                      "iconUri": "//maps.gstatic.com/mapfiles/transit/iw2/6/bus2.png"
+                    }
+                  },
+                  "stopCount": 5
+                }
+              ]
+            }
+          },
+          "source": "api",
+          "recommended_mode": "driving"
+        },
+        {
+          "from": 9,
+          "to": 10,
+          "modes": {
+            "walking": {
+              "duration_min": 31.4,
+              "distance_km": 2.2
+            },
+            "driving": {
+              "duration_min": 8.0,
+              "distance_km": 2.3
+            },
+            "transit": {
+              "duration_min": 24.7,
+              "distance_km": 4.5,
+              "transit_steps": [
+                {
+                  "stopDetails": {
+                    "arrivalStop": {
+                      "name": "東城郵局(臨時站)",
+                      "location": {
+                        "latLng": {
+                          "latitude": 22.98604,
+                          "longitude": 120.21726000000001
+                        }
+                      }
+                    },
+                    "arrivalTime": "2026-04-17T10:53:04Z",
+                    "departureStop": {
+                      "name": "西門友愛街口",
+                      "location": {
+                        "latLng": {
+                          "latitude": 22.991274999999998,
+                          "longitude": 120.19821899999998
+                        }
+                      }
+                    },
+                    "departureTime": "2026-04-17T10:36:28Z"
+                  },
+                  "localizedValues": {
+                    "arrivalTime": {
+                      "time": {},
+                      "timeZone": "Asia/Taipei"
+                    },
+                    "departureTime": {
+                      "time": {},
+                      "timeZone": "Asia/Taipei"
+                    }
+                  },
+                  "headsign": "關廟轉運站",
+                  "transitLine": {
+                    "agencies": [
+                      {
+                        "name": "興南客運",
+                        "uri": "http://snnew.myweb.hinet.net/main.htm"
+                      }
+                    ],
+                    "name": "安平工業區-關廟轉運站",
+                    "nameShort": "紅幹線",
+                    "vehicle": {
+                      "name": {
+                        "text": "公車"
+                      },
+                      "type": "BUS",
+                      "iconUri": "//maps.gstatic.com/mapfiles/transit/iw2/6/bus2.png"
+                    }
+                  },
+                  "stopCount": 10
+                }
+              ]
+            }
+          },
+          "source": "api",
+          "recommended_mode": "driving"
+        },
+        {
+          "from": 10,
+          "to": 11,
+          "modes": {
+            "driving": {
+              "duration_min": 10.1,
+              "distance_km": 2.7
+            },
+            "walking": {
+              "duration_min": 34.3,
+              "distance_km": 2.4
+            },
+            "transit": {
+              "duration_min": 13.8,
+              "distance_km": 2.9,
+              "transit_steps": [
+                {
+                  "stopDetails": {
+                    "arrivalStop": {
+                      "name": "臺南火車站(中山路C)",
+                      "location": {
+                        "latLng": {
+                          "latitude": 22.99662,
+                          "longitude": 120.21106
+                        }
+                      }
+                    },
+                    "arrivalTime": "2026-04-17T12:26:59Z",
+                    "departureStop": {
+                      "name": "東城郵局(臨時站)",
+                      "location": {
+                        "latLng": {
+                          "latitude": 22.98536,
+                          "longitude": 120.21677000000001
+                        }
+                      }
+                    },
+                    "departureTime": "2026-04-17T12:22:30Z"
+                  },
+                  "localizedValues": {
+                    "arrivalTime": {
+                      "time": {},
+                      "timeZone": "Asia/Taipei"
+                    },
+                    "departureTime": {
+                      "time": {},
+                      "timeZone": "Asia/Taipei"
+                    }
+                  },
+                  "headsign": "海東國小",
+                  "transitLine": {
+                    "agencies": [
+                      {
+                        "name": "府城客運",
+                        "uri": "http://www.kingwaytek.com/"
+                      }
+                    ],
+                    "name": "海東國小-德高國小",
+                    "nameShort": "3",
+                    "vehicle": {
+                      "name": {
+                        "text": "公車"
+                      },
+                      "type": "BUS",
+                      "iconUri": "//maps.gstatic.com/mapfiles/transit/iw2/6/bus2.png"
+                    }
+                  },
+                  "stopCount": 5
+                }
+              ]
+            }
+          },
+          "source": "api",
+          "recommended_mode": "driving"
+        },
+        {
+          "from": 11,
+          "to": 12,
+          "modes": {
+            "driving": {
+              "duration_min": 8.2,
+              "distance_km": 2.1
+            },
+            "transit": {
+              "duration_min": 21.4,
+              "distance_km": 3.2,
+              "transit_steps": [
+                {
+                  "stopDetails": {
+                    "arrivalStop": {
+                      "name": "小西門(西門路)",
+                      "location": {
+                        "latLng": {
+                          "latitude": 22.98822,
+                          "longitude": 120.19740200000001
+                        }
+                      }
+                    },
+                    "arrivalTime": "2026-04-17T14:22:33Z",
+                    "departureStop": {
+                      "name": "成功路",
+                      "location": {
+                        "latLng": {
+                          "latitude": 22.997788999999997,
+                          "longitude": 120.20787799999998
+                        }
+                      }
+                    },
+                    "departureTime": "2026-04-17T14:10:33Z"
+                  },
+                  "localizedValues": {
+                    "arrivalTime": {
+                      "time": {},
+                      "timeZone": "Asia/Taipei"
+                    },
+                    "departureTime": {
+                      "time": {},
+                      "timeZone": "Asia/Taipei"
+                    }
+                  },
+                  "headsign": "安平工業區",
+                  "transitLine": {
+                    "agencies": [
+                      {
+                        "name": "興南客運",
+                        "uri": "http://snnew.myweb.hinet.net/main.htm"
+                      }
+                    ],
+                    "name": "安平工業區-佳里",
+                    "nameShort": "藍幹線",
+                    "vehicle": {
+                      "name": {
+                        "text": "公車"
+                      },
+                      "type": "BUS",
+                      "iconUri": "//maps.gstatic.com/mapfiles/transit/iw2/6/bus2.png"
+                    }
+                  },
+                  "stopCount": 7
+                }
+              ]
+            },
+            "walking": {
+              "duration_min": 29.7,
+              "distance_km": 2.1
+            }
+          },
+          "source": "api",
+          "recommended_mode": "driving"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2026-04-18",
+      "title": "南美館 × 選物店 × 阿霞 × 深夜甜點",
+      "subtitle": "中西區深度",
+      "places": [
+        {
+          "type": "food",
+          "title": "明和菜粽",
+          "note": "前一天電話預訂（06-2266158），外帶回飯店",
+          "maps_query": "明和菜粽, Tainan, Taiwan",
+          "place_id": "ChIJKUrVYLB4bjQRsnh2Yisg090",
+          "lat": 23.001574,
+          "lng": 120.19547929999999,
+          "display_name": "明和菜粽",
+          "time": "07:00"
+        },
+        {
+          "type": "hotel",
+          "title": "晶英酒店早餐",
+          "note": "飯店早餐＋明和菜粽",
+          "maps_query": "台南晶英酒店 Silks Place Tainan, Tainan, Taiwan",
+          "place_id": "ChIJDzX2d3x2bjQRha-HOsf7LIA",
+          "lat": 22.987343,
+          "lng": 120.1994318,
+          "display_name": "Silks Place Tainan",
+          "time": "07:30"
+        },
+        {
+          "type": "hotel",
+          "title": "晶英酒店 check-out",
+          "note": "check-out，行李寄櫃台",
+          "maps_query": "台南晶英酒店 Silks Place Tainan, Tainan, Taiwan",
+          "place_id": "ChIJDzX2d3x2bjQRha-HOsf7LIA",
+          "lat": 22.987343,
+          "lng": 120.1994318,
+          "display_name": "Silks Place Tainan",
+          "time": "10:30"
+        },
+        {
+          "type": "spot",
+          "title": "臺南市美術館 1 館",
+          "note": "「恁兜攏按怎拜？從餐桌到神桌」展覽",
+          "maps_query": "臺南市美術館1館, Tainan, Taiwan",
+          "place_id": "ChIJEW-wHYh2bjQRMcOg9y-LPFk",
+          "lat": 22.990991299999997,
+          "lng": 120.205069,
+          "display_name": "Tainan Art Gallery Building 1",
+          "time": "10:50"
+        },
+        {
+          "type": "food",
+          "title": "福泰飯桌第三代",
+          "note": "必比登，傳統飯桌菜個人份",
+          "maps_query": "福泰飯桌第三代, Tainan, Taiwan",
+          "place_id": "ChIJ54Pf_2F2bjQRAMH-nhBgbAQ",
+          "lat": 22.9957939,
+          "lng": 120.2050935,
+          "display_name": "Fu Tai Table (3rd Gen)",
+          "time": "12:00"
+        },
+        {
+          "type": "spot",
+          "title": "鳥飛古物店",
+          "note": "台日老件家具＋民藝品，13:00 開門",
+          "maps_query": "鳥飛古物店, Tainan, Taiwan",
+          "place_id": "ChIJd4KnAmJ2bjQR3flOr6cbxQs",
+          "lat": 22.995572400000004,
+          "lng": 120.20491580000001,
+          "display_name": "鳥飛古物店",
+          "time": "13:00"
+        },
+        {
+          "type": "spot",
+          "title": "北山雜貨",
+          "note": "日本窯區直選器皿",
+          "maps_query": "北山雜貨 Kitayama, Tainan, Taiwan",
+          "place_id": "ChIJ--fS5t53bjQRhsBTJjQ69y8",
+          "lat": 22.998414399999998,
+          "lng": 120.1995444,
+          "display_name": "北山雜貨（店休請看粉專）",
+          "time": "13:40"
+        },
+        {
+          "type": "food",
+          "title": "Mi Cazuela",
+          "note": "巴斯克蛋糕（13:00 開，建議早到排隊）",
+          "maps_query": "Mi Cazuela, Tainan, Taiwan",
+          "place_id": "ChIJpyo--od2bjQRPBmRb-pPIWs",
+          "lat": 22.989533299999998,
+          "lng": 120.2055505,
+          "display_name": "Mi Cazuela 移動的鍋子",
+          "time": "14:20"
+        },
+        {
+          "type": "drink",
+          "title": "桑原商店",
+          "note": "昭和風日式木屋，手工霜淇淋",
+          "maps_query": "桑原商店, Tainan, Taiwan",
+          "place_id": "ChIJyaq1NYV2bjQRr4U_rEXjJA4",
+          "lat": 22.9864498,
+          "lng": 120.2164189,
+          "display_name": "桑原商店",
+          "time": "15:10"
+        },
+        {
+          "type": "hotel",
+          "title": "晶英取行李",
+          "note": "回晶英取行李",
+          "maps_query": "台南晶英酒店 Silks Place Tainan, Tainan, Taiwan",
+          "place_id": "ChIJDzX2d3x2bjQRha-HOsf7LIA",
+          "lat": 22.987343,
+          "lng": 120.1994318,
+          "display_name": "Silks Place Tainan",
+          "time": "16:00"
+        },
+        {
+          "type": "hotel",
+          "title": "禧榕軒 check-in",
+          "note": "check-in，休息",
+          "maps_query": "禧榕軒大飯店 Grand Banyan Hotel, Tainan, Taiwan",
+          "place_id": "ChIJcWJbO3x3bjQRw0psRJrHKUY",
+          "lat": 22.997998499999998,
+          "lng": 120.20839279999998,
+          "display_name": "Grand Banyan Hotel",
+          "time": "16:30"
+        },
+        {
+          "type": "food",
+          "title": "阿霞飯店",
+          "note": "雙人套餐 $2,388（90 min）",
+          "maps_query": "阿霞飯店, Tainan, Taiwan",
+          "place_id": "ChIJqfAvaGJ2bjQR678EbZXaqfE",
+          "lat": 22.9940875,
+          "lng": 120.20368069999999,
+          "display_name": "A SHA Tainan Main Restaurant",
+          "time": "18:00"
+        },
+        {
+          "type": "food",
+          "title": "餵食三刻",
+          "note": "深夜甜點 18:30-02:00，白玉抹茶塔",
+          "maps_query": "餵食三刻, Tainan, Taiwan",
+          "place_id": "ChIJGXzGJu93bjQRt38U9rQ-ifI",
+          "lat": 23.0185569,
+          "lng": 120.2111267,
+          "display_name": "餵食三刻（內有貓貓，每月公休公告於ig ）",
+          "time": "20:00"
+        },
+        {
+          "type": "hotel",
+          "title": "禧榕軒",
+          "note": "回飯店休息",
+          "maps_query": "禧榕軒大飯店 Grand Banyan Hotel, Tainan, Taiwan",
+          "place_id": "ChIJcWJbO3x3bjQRw0psRJrHKUY",
+          "lat": 22.997998499999998,
+          "lng": 120.20839279999998,
+          "display_name": "Grand Banyan Hotel",
+          "time": "21:00"
+        }
+      ],
+      "travel": [
+        {
+          "from": 0,
+          "to": 1,
+          "modes": {
+            "driving": {
+              "duration_min": 8.5,
+              "distance_km": 2.3
+            },
+            "walking": {
+              "duration_min": 32.3,
+              "distance_km": 2.2
+            },
+            "transit": {
+              "duration_min": 19.5,
+              "distance_km": 2.6,
+              "transit_steps": [
+                {
+                  "stopDetails": {
+                    "arrivalStop": {
+                      "name": "小西門(西門路)",
+                      "location": {
+                        "latLng": {
+                          "latitude": 22.98822,
+                          "longitude": 120.19740200000001
+                        }
+                      }
+                    },
+                    "arrivalTime": "2026-04-17T23:17:26Z",
+                    "departureStop": {
+                      "name": "協和里",
+                      "location": {
+                        "latLng": {
+                          "latitude": 22.999869999999998,
+                          "longitude": 120.19276
+                        }
+                      }
+                    },
+                    "departureTime": "2026-04-17T23:08:54Z"
+                  },
+                  "localizedValues": {
+                    "arrivalTime": {
+                      "time": {},
+                      "timeZone": "Asia/Taipei"
+                    },
+                    "departureTime": {
+                      "time": {},
+                      "timeZone": "Asia/Taipei"
+                    }
+                  },
+                  "headsign": "安平工業區",
+                  "transitLine": {
+                    "agencies": [
+                      {
+                        "name": "興南客運",
+                        "uri": "http://snnew.myweb.hinet.net/main.htm"
+                      }
+                    ],
+                    "name": "安平工業區-青草里",
+                    "nameShort": "藍24",
+                    "vehicle": {
+                      "name": {
+                        "text": "公車"
+                      },
+                      "type": "BUS",
+                      "iconUri": "//maps.gstatic.com/mapfiles/transit/iw2/6/bus2.png"
+                    }
+                  },
+                  "stopCount": 5
+                }
+              ]
+            }
+          },
+          "source": "api",
+          "recommended_mode": "driving"
+        },
+        {
+          "from": 1,
+          "to": 2,
+          "modes": {
+            "driving": {
+              "duration_min": 0.0,
+              "distance_km": 0.0
+            },
+            "walking": {
+              "duration_min": 0.0,
+              "distance_km": 0.0
+            }
+          },
+          "source": "api",
+          "recommended_mode": "driving"
+        },
+        {
+          "from": 2,
+          "to": 3,
+          "modes": {
+            "driving": {
+              "duration_min": 4.3,
+              "distance_km": 1.0
+            },
+            "walking": {
+              "duration_min": 13.6,
+              "distance_km": 1.0
+            },
+            "transit": {
+              "duration_min": 14.5,
+              "distance_km": 2.8,
+              "transit_steps": [
+                {
+                  "stopDetails": {
+                    "arrivalStop": {
+                      "name": "孔廟(臺灣文學館)",
+                      "location": {
+                        "latLng": {
+                          "latitude": 22.99149,
+                          "longitude": 120.20501999999998
+                        }
+                      }
+                    },
+                    "arrivalTime": "2026-04-18T02:45:37Z",
+                    "departureStop": {
+                      "name": "新光三越新天地",
+                      "location": {
+                        "latLng": {
+                          "latitude": 22.986507,
+                          "longitude": 120.197425
+                        }
+                      }
+                    },
+                    "departureTime": "2026-04-18T02:37:02Z"
+                  },
+                  "localizedValues": {
+                    "arrivalTime": {
+                      "time": {},
+                      "timeZone": "Asia/Taipei"
+                    },
+                    "departureTime": {
+                      "time": {},
+                      "timeZone": "Asia/Taipei"
+                    }
+                  },
+                  "headsign": "崑山科技大學",
+                  "transitLine": {
+                    "agencies": [
+                      {
+                        "name": "府城客運",
+                        "uri": "http://www.kingwaytek.com/"
+                      }
+                    ],
+                    "name": "崑山科大-白鷺灣社區",
+                    "nameShort": "2",
+                    "vehicle": {
+                      "name": {
+                        "text": "公車"
+                      },
+                      "type": "BUS",
+                      "iconUri": "//maps.gstatic.com/mapfiles/transit/iw2/6/bus2.png"
+                    }
+                  },
+                  "stopCount": 9
+                }
+              ]
+            }
+          },
+          "source": "api",
+          "recommended_mode": "walking"
+        },
+        {
+          "from": 3,
+          "to": 4,
+          "modes": {
+            "driving": {
+              "duration_min": 3.0,
+              "distance_km": 0.7
+            },
+            "walking": {
+              "duration_min": 9.9,
+              "distance_km": 0.7
+            },
+            "transit": {
+              "duration_min": 9.9,
+              "distance_km": 0.7
+            }
+          },
+          "source": "api",
+          "recommended_mode": "walking"
+        },
+        {
+          "from": 4,
+          "to": 5,
+          "modes": {
+            "driving": {
+              "duration_min": 0.5,
+              "distance_km": 0.1
+            },
+            "walking": {
+              "duration_min": 1.5,
+              "distance_km": 0.1
+            },
+            "transit": {
+              "duration_min": 1.5,
+              "distance_km": 0.1
+            }
+          },
+          "source": "api",
+          "recommended_mode": "walking"
+        },
+        {
+          "from": 5,
+          "to": 6,
+          "modes": {
+            "driving": {
+              "duration_min": 4.1,
+              "distance_km": 0.9
+            },
+            "walking": {
+              "duration_min": 10.1,
+              "distance_km": 0.7
+            },
+            "transit": {
+              "duration_min": 11.4,
+              "distance_km": 1.6,
+              "transit_steps": [
+                {
+                  "stopDetails": {
+                    "arrivalStop": {
+                      "name": "西門路三段口",
+                      "location": {
+                        "latLng": {
+                          "latitude": 22.999012999999998,
+                          "longitude": 120.200744
+                        }
+                      }
+                    },
+                    "arrivalTime": "2026-04-18T05:08:55Z",
+                    "departureStop": {
+                      "name": "臺南護專",
+                      "location": {
+                        "latLng": {
+                          "latitude": 22.9953301,
+                          "longitude": 120.20707639999999
+                        }
+                      }
+                    },
+                    "departureTime": "2026-04-18T05:04:00Z"
+                  },
+                  "localizedValues": {
+                    "arrivalTime": {
+                      "time": {},
+                      "timeZone": "Asia/Taipei"
+                    },
+                    "departureTime": {
+                      "time": {},
+                      "timeZone": "Asia/Taipei"
+                    }
+                  },
+                  "headsign": "大成國中",
+                  "transitLine": {
+                    "agencies": [
+                      {
+                        "name": "府城客運",
+                        "uri": "http://www.kingwaytek.com/"
+                      }
+                    ],
+                    "name": "大成國中-和順轉運站",
+                    "nameShort": "18",
+                    "vehicle": {
+                      "name": {
+                        "text": "公車"
+                      },
+                      "type": "BUS",
+                      "iconUri": "//maps.gstatic.com/mapfiles/transit/iw2/6/bus2.png"
+                    }
+                  },
+                  "stopCount": 6
+                }
+              ]
+            }
+          },
+          "source": "api",
+          "recommended_mode": "walking"
+        },
+        {
+          "from": 6,
+          "to": 7,
+          "modes": {
+            "driving": {
+              "duration_min": 7.8,
+              "distance_km": 1.8
+            },
+            "walking": {
+              "duration_min": 23.4,
+              "distance_km": 1.6
+            },
+            "transit": {
+              "duration_min": 14.5,
+              "distance_km": 1.9,
+              "transit_steps": [
+                {
+                  "stopDetails": {
+                    "arrivalStop": {
+                      "name": "延平郡王祠(府前路)",
+                      "location": {
+                        "latLng": {
+                          "latitude": 22.9889761,
+                          "longitude": 120.20588959999999
+                        }
+                      }
+                    },
+                    "arrivalTime": "2026-04-18T05:54:50Z",
+                    "departureStop": {
+                      "name": "赤崁樓",
+                      "location": {
+                        "latLng": {
+                          "latitude": 22.99685,
+                          "longitude": 120.20219000000002
+                        }
+                      }
+                    },
+                    "departureTime": "2026-04-18T05:48:24Z"
+                  },
+                  "localizedValues": {
+                    "arrivalTime": {
+                      "time": {},
+                      "timeZone": "Asia/Taipei"
+                    },
+                    "departureTime": {
+                      "time": {},
+                      "timeZone": "Asia/Taipei"
+                    }
+                  },
+                  "headsign": "臺南轉運站",
+                  "transitLine": {
+                    "agencies": [
+                      {
+                        "name": "府城客運",
+                        "uri": "http://www.kingwaytek.com/"
+                      }
+                    ],
+                    "name": "臺南轉運站-七股鹽山",
+                    "nameShort": "98台灣好行府城台江線",
+                    "vehicle": {
+                      "name": {
+                        "text": "公車"
+                      },
+                      "type": "BUS",
+                      "iconUri": "//maps.gstatic.com/mapfiles/transit/iw2/6/bus2.png"
+                    }
+                  },
+                  "stopCount": 4
+                }
+              ]
+            }
+          },
+          "source": "api",
+          "recommended_mode": "driving"
+        },
+        {
+          "from": 7,
+          "to": 8,
+          "modes": {
+            "driving": {
+              "duration_min": 5.0,
+              "distance_km": 1.4
+            },
+            "walking": {
+              "duration_min": 18.2,
+              "distance_km": 1.3
+            },
+            "transit": {
+              "duration_min": 16.5,
+              "distance_km": 1.9,
+              "transit_steps": [
+                {
+                  "stopDetails": {
+                    "arrivalStop": {
+                      "name": "東城郵局(臨時站)",
+                      "location": {
+                        "latLng": {
+                          "latitude": 22.98604,
+                          "longitude": 120.21726000000001
+                        }
+                      }
+                    },
+                    "arrivalTime": "2026-04-18T06:38:04Z",
+                    "departureStop": {
+                      "name": "胸腔病院",
+                      "location": {
+                        "latLng": {
+                          "latitude": 22.98726,
+                          "longitude": 120.21123999999999
+                        }
+                      }
+                    },
+                    "departureTime": "2026-04-18T06:34:10Z"
+                  },
+                  "localizedValues": {
+                    "arrivalTime": {
+                      "time": {},
+                      "timeZone": "Asia/Taipei"
+                    },
+                    "departureTime": {
+                      "time": {},
+                      "timeZone": "Asia/Taipei"
+                    }
+                  },
+                  "headsign": "關廟轉運站",
+                  "transitLine": {
+                    "agencies": [
+                      {
+                        "name": "興南客運",
+                        "uri": "http://snnew.myweb.hinet.net/main.htm"
+                      }
+                    ],
+                    "name": "安平工業區-關廟轉運站",
+                    "nameShort": "紅幹線",
+                    "vehicle": {
+                      "name": {
+                        "text": "公車"
+                      },
+                      "type": "BUS",
+                      "iconUri": "//maps.gstatic.com/mapfiles/transit/iw2/6/bus2.png"
+                    }
+                  },
+                  "stopCount": 2
+                }
+              ]
+            }
+          },
+          "source": "api",
+          "recommended_mode": "driving"
+        },
+        {
+          "from": 8,
+          "to": 9,
+          "modes": {
+            "walking": {
+              "duration_min": 26.9,
+              "distance_km": 2.0
+            },
+            "driving": {
+              "duration_min": 7.7,
+              "distance_km": 2.2
+            },
+            "transit": {
+              "duration_min": 24.9,
+              "distance_km": 4.8,
+              "transit_steps": [
+                {
+                  "stopDetails": {
+                    "arrivalStop": {
+                      "name": "小西門(西門路)",
+                      "location": {
+                        "latLng": {
+                          "latitude": 22.98822,
+                          "longitude": 120.19740200000001
+                        }
+                      }
+                    },
+                    "arrivalTime": "2026-04-18T07:32:40Z",
+                    "departureStop": {
+                      "name": "東城郵局(臨時站)",
+                      "location": {
+                        "latLng": {
+                          "latitude": 22.98536,
+                          "longitude": 120.21677000000001
+                        }
+                      }
+                    },
+                    "departureTime": "2026-04-18T07:14:31Z"
+                  },
+                  "localizedValues": {
+                    "arrivalTime": {
+                      "time": {},
+                      "timeZone": "Asia/Taipei"
+                    },
+                    "departureTime": {
+                      "time": {},
+                      "timeZone": "Asia/Taipei"
+                    }
+                  },
+                  "headsign": "安平工業區",
+                  "transitLine": {
+                    "agencies": [
+                      {
+                        "name": "興南客運",
+                        "uri": "http://snnew.myweb.hinet.net/main.htm"
+                      }
+                    ],
+                    "name": "安平工業區-龍崎",
+                    "nameShort": "紅幹線延駛龍崎",
+                    "vehicle": {
+                      "name": {
+                        "text": "公車"
+                      },
+                      "type": "BUS",
+                      "iconUri": "//maps.gstatic.com/mapfiles/transit/iw2/6/bus2.png"
+                    }
+                  },
+                  "stopCount": 11
+                }
+              ]
+            }
+          },
+          "source": "api",
+          "recommended_mode": "driving"
+        },
+        {
+          "from": 9,
+          "to": 10,
+          "modes": {
+            "walking": {
+              "duration_min": 26.6,
+              "distance_km": 1.9
+            },
+            "driving": {
+              "duration_min": 8.8,
+              "distance_km": 2.1
+            },
+            "transit": {
+              "duration_min": 12.0,
+              "distance_km": 3.0,
+              "transit_steps": [
+                {
+                  "stopDetails": {
+                    "arrivalStop": {
+                      "name": "臺南火車站(成功路B)",
+                      "location": {
+                        "latLng": {
+                          "latitude": 22.99729,
+                          "longitude": 120.2107
+                        }
+                      }
+                    },
+                    "arrivalTime": "2026-04-18T08:17:21Z",
+                    "departureStop": {
+                      "name": "新光三越新天地",
+                      "location": {
+                        "latLng": {
+                          "latitude": 22.987098,
+                          "longitude": 120.1977
+                        }
+                      }
+                    },
+                    "departureTime": "2026-04-18T08:11:54Z"
+                  },
+                  "localizedValues": {
+                    "arrivalTime": {
+                      "time": {},
+                      "timeZone": "Asia/Taipei"
+                    },
+                    "departureTime": {
+                      "time": {},
+                      "timeZone": "Asia/Taipei"
+                    }
+                  },
+                  "headsign": "和順轉運站",
+                  "transitLine": {
+                    "agencies": [
+                      {
+                        "name": "府城客運",
+                        "uri": "http://www.kingwaytek.com/"
+                      }
+                    ],
+                    "name": "和順轉運站-市立醫院",
+                    "nameShort": "5",
+                    "vehicle": {
+                      "name": {
+                        "text": "公車"
+                      },
+                      "type": "BUS",
+                      "iconUri": "//maps.gstatic.com/mapfiles/transit/iw2/6/bus2.png"
+                    }
+                  },
+                  "stopCount": 8
+                }
+              ]
+            }
+          },
+          "source": "api",
+          "recommended_mode": "driving"
+        },
+        {
+          "from": 10,
+          "to": 11,
+          "modes": {
+            "driving": {
+              "duration_min": 4.0,
+              "distance_km": 0.9
+            },
+            "walking": {
+              "duration_min": 12.1,
+              "distance_km": 0.8
+            },
+            "transit": {
+              "duration_min": 12.1,
+              "distance_km": 0.8
+            }
+          },
+          "source": "api",
+          "recommended_mode": "walking"
+        },
+        {
+          "from": 11,
+          "to": 12,
+          "modes": {
+            "driving": {
+              "duration_min": 11.1,
+              "distance_km": 3.4
+            },
+            "walking": {
+              "duration_min": 44.8,
+              "distance_km": 3.1
+            },
+            "transit": {
+              "duration_min": 23.5,
+              "distance_km": 4.1,
+              "transit_steps": [
+                {
+                  "stopDetails": {
+                    "arrivalStop": {
+                      "name": "鄭子寮",
+                      "location": {
+                        "latLng": {
+                          "latitude": 23.017129,
+                          "longitude": 120.20973899999998
+                        }
+                      }
+                    },
+                    "arrivalTime": "2026-04-18T10:26:43Z",
+                    "departureStop": {
+                      "name": "林百貨(中正路)",
+                      "location": {
+                        "latLng": {
+                          "latitude": 22.9920391,
+                          "longitude": 120.20222869999999
+                        }
+                      }
+                    },
+                    "departureTime": "2026-04-18T10:12:00Z"
+                  },
+                  "localizedValues": {
+                    "arrivalTime": {
+                      "time": {},
+                      "timeZone": "Asia/Taipei"
+                    },
+                    "departureTime": {
+                      "time": {},
+                      "timeZone": "Asia/Taipei"
+                    }
+                  },
+                  "headsign": "台糖安南學苑",
+                  "transitLine": {
+                    "agencies": [
+                      {
+                        "name": "府城客運",
+                        "uri": "http://www.kingwaytek.com/"
+                      }
+                    ],
+                    "name": "公園北路-台糖安南學苑",
+                    "nameShort": "7",
+                    "vehicle": {
+                      "name": {
+                        "text": "公車"
+                      },
+                      "type": "BUS",
+                      "iconUri": "//maps.gstatic.com/mapfiles/transit/iw2/6/bus2.png"
+                    }
+                  },
+                  "stopCount": 12
+                }
+              ]
+            }
+          },
+          "source": "api",
+          "recommended_mode": "driving"
+        },
+        {
+          "from": 12,
+          "to": 13,
+          "modes": {
+            "driving": {
+              "duration_min": 9.5,
+              "distance_km": 2.9
+            },
+            "walking": {
+              "duration_min": 39.6,
+              "distance_km": 2.7
+            },
+            "transit": {
+              "duration_min": 20.9,
+              "distance_km": 3.3,
+              "transit_steps": [
+                {
+                  "stopDetails": {
+                    "arrivalStop": {
+                      "name": "成功路",
+                      "location": {
+                        "latLng": {
+                          "latitude": 22.997788999999997,
+                          "longitude": 120.20787799999998
+                        }
+                      }
+                    },
+                    "arrivalTime": "2026-04-18T12:25:33Z",
+                    "departureStop": {
+                      "name": "正覺里",
+                      "location": {
+                        "latLng": {
+                          "latitude": 23.017295,
+                          "longitude": 120.215019
+                        }
+                      }
+                    },
+                    "departureTime": "2026-04-18T12:16:06Z"
+                  },
+                  "localizedValues": {
+                    "arrivalTime": {
+                      "time": {},
+                      "timeZone": "Asia/Taipei"
+                    },
+                    "departureTime": {
+                      "time": {},
+                      "timeZone": "Asia/Taipei"
+                    }
+                  },
+                  "headsign": "安平工業區",
+                  "transitLine": {
+                    "agencies": [
+                      {
+                        "name": "興南客運",
+                        "uri": "http://snnew.myweb.hinet.net/main.htm"
+                      }
+                    ],
+                    "name": "安平工業區-佳里",
+                    "nameShort": "藍幹線",
+                    "vehicle": {
+                      "name": {
+                        "text": "公車"
+                      },
+                      "type": "BUS",
+                      "iconUri": "//maps.gstatic.com/mapfiles/transit/iw2/6/bus2.png"
+                    }
+                  },
+                  "stopCount": 7
+                }
+              ]
+            }
+          },
+          "source": "api",
+          "recommended_mode": "driving"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2026-04-19",
+      "title": "選物 × 書店 × 真夏收尾",
+      "subtitle": "中西區 → 東區",
+      "places": [
+        {
+          "type": "hotel",
+          "title": "禧榕軒早午餐",
+          "note": "早午餐（退房後仍可享用 3hr）",
+          "maps_query": "禧榕軒大飯店 Grand Banyan Hotel, Tainan, Taiwan",
+          "place_id": "ChIJcWJbO3x3bjQRw0psRJrHKUY",
+          "lat": 22.997998499999998,
+          "lng": 120.20839279999998,
+          "display_name": "Grand Banyan Hotel",
+          "time": "09:00"
+        },
+        {
+          "type": "food",
+          "title": "鹿耳",
+          "note": "白天早午餐甜點",
+          "maps_query": "鹿耳深夜甜點, Tainan, Taiwan",
+          "place_id": "ChIJ-2iLmoR2bjQREdeivWRjL9E",
+          "lat": 22.984241900000004,
+          "lng": 120.21516969999999,
+          "display_name": "LURE Late Late Breakfast",
+          "time": "10:50"
+        },
+        {
+          "type": "food",
+          "title": "正興街隨興午餐",
+          "note": "正興街、海安路沿路逛逛覓食",
+          "maps_query": "22.9878,120.1988",
+          "place_id": null,
+          "lat": 22.9878,
+          "lng": 120.1988,
+          "display_name": "正興街隨興午餐",
+          "time": "11:30"
+        },
+        {
+          "type": "spot",
+          "title": "又又美 FotoShop",
+          "note": "復古選物＋底片拍貼體驗",
+          "maps_query": "FotoShop, Tainan, Taiwan",
+          "place_id": "ChIJqyY5XRd3bjQRdstdumxJeaU",
+          "lat": 22.987112099999997,
+          "lng": 120.20858679999999,
+          "display_name": "又又美FotoShop",
+          "time": "12:10"
+        },
+        {
+          "type": "spot",
+          "title": "餐桌上的鹿早",
+          "note": "簡約手工器皿選物",
+          "maps_query": "餐桌上的鹿早, Tainan, Taiwan",
+          "place_id": "ChIJU1VlR4l2bjQRoah3Hbo41r4",
+          "lat": 22.993353799999998,
+          "lng": 120.20990579999999,
+          "display_name": "餐桌上的鹿早",
+          "time": "12:50"
+        },
+        {
+          "type": "spot",
+          "title": "南渡策室 × 無有為",
+          "note": "獨立書店＋台灣茶，東區近火車站",
+          "maps_query": "Nothing Bookstore Tainan East District",
+          "place_id": "ChIJg91mv5h2bjQR7t6ricsdXGY",
+          "lat": 22.9813357,
+          "lng": 120.22690960000001,
+          "display_name": "無有為 Bookstore & Café Nothing",
+          "time": "14:00"
+        },
+        {
+          "type": "hotel",
+          "title": "禧榕軒取行李",
+          "note": "回禧榕軒取行李",
+          "maps_query": "禧榕軒大飯店 Grand Banyan Hotel, Tainan, Taiwan",
+          "place_id": "ChIJcWJbO3x3bjQRw0psRJrHKUY",
+          "lat": 22.997998499999998,
+          "lng": 120.20839279999998,
+          "display_name": "Grand Banyan Hotel",
+          "time": "15:30"
+        },
+        {
+          "type": "food",
+          "title": "和洋亭 真夏",
+          "note": "已預約，日式漢堡排套餐 $380 起",
+          "maps_query": "和洋亭 真夏, Tainan, Taiwan",
+          "place_id": "ChIJx7BkVQB3bjQRggT-VmNzwFU",
+          "lat": 22.9953807,
+          "lng": 120.2115608,
+          "display_name": "和洋亭 真夏",
+          "time": "17:00"
+        },
+        {
+          "type": "transport",
+          "title": "台南火車站→新竹",
+          "note": "自強號→新竹",
+          "maps_query": "台南火車站, Tainan, Taiwan",
+          "place_id": "ChIJCaqM84x2bjQRRqzST46i6cM",
+          "lat": 22.9970861,
+          "lng": 120.21298319999998,
+          "display_name": "Tainan",
+          "time": "18:24"
+        }
+      ],
+      "travel": [
+        {
+          "from": 0,
+          "to": 1,
+          "modes": {
+            "walking": {
+              "duration_min": 32.7,
+              "distance_km": 2.2
+            },
+            "driving": {
+              "duration_min": 8.9,
+              "distance_km": 2.5
+            },
+            "transit": {
+              "duration_min": 17.2,
+              "distance_km": 3.7,
+              "transit_steps": [
+                {
+                  "stopDetails": {
+                    "arrivalStop": {
+                      "name": "東門城",
+                      "location": {
+                        "latLng": {
+                          "latitude": 22.986402,
+                          "longitude": 120.219207
+                        }
+                      }
+                    },
+                    "arrivalTime": "2026-04-19T01:14:02Z",
+                    "departureStop": {
+                      "name": "臺南火車站(成功路A)",
+                      "location": {
+                        "latLng": {
+                          "latitude": 22.99757,
+                          "longitude": 120.21074
+                        }
+                      }
+                    },
+                    "departureTime": "2026-04-19T01:10:00Z"
+                  },
+                  "localizedValues": {
+                    "arrivalTime": {
+                      "time": {},
+                      "timeZone": "Asia/Taipei"
+                    },
+                    "departureTime": {
+                      "time": {},
+                      "timeZone": "Asia/Taipei"
+                    }
+                  },
+                  "headsign": "旗山轉運站",
+                  "transitLine": {
+                    "agencies": [
+                      {
+                        "name": "高雄客運",
+                        "uri": "http://www.ksbus.com.tw/"
+                      }
+                    ],
+                    "name": "臺南火車站-旗山轉運站",
+                    "nameShort": "8050",
+                    "vehicle": {
+                      "name": {
+                        "text": "公車"
+                      },
+                      "type": "BUS",
+                      "iconUri": "//maps.gstatic.com/mapfiles/transit/iw2/6/bus2.png"
+                    }
+                  },
+                  "stopCount": 3
+                }
+              ]
+            }
+          },
+          "source": "api",
+          "recommended_mode": "driving"
+        },
+        {
+          "from": 1,
+          "to": 2,
+          "modes": {
+            "walking": {
+              "duration_min": 30.5,
+              "distance_km": 2.2
+            },
+            "driving": {
+              "duration_min": 8.3,
+              "distance_km": 2.2
+            },
+            "transit": {
+              "duration_min": 17.7,
+              "distance_km": 3.2,
+              "transit_steps": [
+                {
+                  "stopDetails": {
+                    "arrivalStop": {
+                      "name": "新光三越新天地",
+                      "location": {
+                        "latLng": {
+                          "latitude": 22.987098,
+                          "longitude": 120.1977
+                        }
+                      }
+                    },
+                    "arrivalTime": "2026-04-19T03:06:58Z",
+                    "departureStop": {
+                      "name": "南台南",
+                      "location": {
+                        "latLng": {
+                          "latitude": 22.98028,
+                          "longitude": 120.2127
+                        }
+                      }
+                    },
+                    "departureTime": "2026-04-19T03:02:03Z"
+                  },
+                  "localizedValues": {
+                    "arrivalTime": {
+                      "time": {},
+                      "timeZone": "Asia/Taipei"
+                    },
+                    "departureTime": {
+                      "time": {},
+                      "timeZone": "Asia/Taipei"
+                    }
+                  },
+                  "headsign": "和順轉運站",
+                  "transitLine": {
+                    "agencies": [
+                      {
+                        "name": "府城客運",
+                        "uri": "http://www.kingwaytek.com/"
+                      }
+                    ],
+                    "name": "和順轉運站-大甲里",
+                    "nameShort": "5延駛大甲里",
+                    "vehicle": {
+                      "name": {
+                        "text": "公車"
+                      },
+                      "type": "BUS",
+                      "iconUri": "//maps.gstatic.com/mapfiles/transit/iw2/6/bus2.png"
+                    }
+                  },
+                  "stopCount": 8
+                }
+              ]
+            }
+          },
+          "source": "api",
+          "recommended_mode": "driving"
+        },
+        {
+          "from": 2,
+          "to": 3,
+          "modes": {
+            "walking": {
+              "duration_min": 18.8,
+              "distance_km": 1.3
+            },
+            "driving": {
+              "duration_min": 6.1,
+              "distance_km": 1.4
+            },
+            "transit": {
+              "duration_min": 6.9,
+              "distance_km": 1.7,
+              "transit_steps": [
+                {
+                  "stopDetails": {
+                    "arrivalStop": {
+                      "name": "延平郡王祠(國立臺南大學)",
+                      "location": {
+                        "latLng": {
+                          "latitude": 22.987524,
+                          "longitude": 120.208602
+                        }
+                      }
+                    },
+                    "arrivalTime": "2026-04-19T03:41:14Z",
+                    "departureStop": {
+                      "name": "小西門(西門路)",
+                      "location": {
+                        "latLng": {
+                          "latitude": 22.988854999999997,
+                          "longitude": 120.197677
+                        }
+                      }
+                    },
+                    "departureTime": "2026-04-19T03:38:36Z"
+                  },
+                  "localizedValues": {
+                    "arrivalTime": {
+                      "time": {},
+                      "timeZone": "Asia/Taipei"
+                    },
+                    "departureTime": {
+                      "time": {},
+                      "timeZone": "Asia/Taipei"
+                    }
+                  },
+                  "headsign": "高鐵台南站",
+                  "transitLine": {
+                    "agencies": [
+                      {
+                        "name": "漢程客運",
+                        "uri": "http://www.ibus.com.tw/"
+                      }
+                    ],
+                    "name": "臺南市政府-高鐵台南站",
+                    "nameShort": "H31不經台86線",
+                    "vehicle": {
+                      "name": {
+                        "text": "公車"
+                      },
+                      "type": "BUS",
+                      "iconUri": "//maps.gstatic.com/mapfiles/transit/iw2/6/bus2.png"
+                    }
+                  },
+                  "stopCount": 3
+                }
+              ]
+            }
+          },
+          "source": "api",
+          "recommended_mode": "driving"
+        },
+        {
+          "from": 3,
+          "to": 4,
+          "modes": {
+            "driving": {
+              "duration_min": 5.3,
+              "distance_km": 1.3
+            },
+            "walking": {
+              "duration_min": 12.3,
+              "distance_km": 0.8
+            },
+            "transit": {
+              "duration_min": 11.8,
+              "distance_km": 1.3,
+              "transit_steps": [
+                {
+                  "stopDetails": {
+                    "arrivalStop": {
+                      "name": "縣知事官邸",
+                      "location": {
+                        "latLng": {
+                          "latitude": 22.99325,
+                          "longitude": 120.21184
+                        }
+                      }
+                    },
+                    "arrivalTime": "2026-04-19T04:21:10Z",
+                    "departureStop": {
+                      "name": "胸腔病院",
+                      "location": {
+                        "latLng": {
+                          "latitude": 22.98722,
+                          "longitude": 120.21142999999998
+                        }
+                      }
+                    },
+                    "departureTime": "2026-04-19T04:18:21Z"
+                  },
+                  "localizedValues": {
+                    "arrivalTime": {
+                      "time": {},
+                      "timeZone": "Asia/Taipei"
+                    },
+                    "departureTime": {
+                      "time": {},
+                      "timeZone": "Asia/Taipei"
+                    }
+                  },
+                  "headsign": "安平工業區",
+                  "transitLine": {
+                    "agencies": [
+                      {
+                        "name": "興南客運",
+                        "uri": "http://snnew.myweb.hinet.net/main.htm"
+                      }
+                    ],
+                    "name": "安平工業區-龍崎",
+                    "nameShort": "紅幹線延駛龍崎",
+                    "vehicle": {
+                      "name": {
+                        "text": "公車"
+                      },
+                      "type": "BUS",
+                      "iconUri": "//maps.gstatic.com/mapfiles/transit/iw2/6/bus2.png"
+                    }
+                  },
+                  "stopCount": 3
+                }
+              ]
+            }
+          },
+          "source": "api",
+          "recommended_mode": "driving"
+        },
+        {
+          "from": 4,
+          "to": 5,
+          "modes": {
+            "driving": {
+              "duration_min": 9.7,
+              "distance_km": 2.7
+            },
+            "walking": {
+              "duration_min": 37.8,
+              "distance_km": 2.6
+            },
+            "transit": {
+              "duration_min": 20.9,
+              "distance_km": 3.6,
+              "transit_steps": [
+                {
+                  "stopDetails": {
+                    "arrivalStop": {
+                      "name": "富強市場(東門路)",
+                      "location": {
+                        "latLng": {
+                          "latitude": 22.982633,
+                          "longitude": 120.22711100000001
+                        }
+                      }
+                    },
+                    "arrivalTime": "2026-04-19T05:14:24Z",
+                    "departureStop": {
+                      "name": "縣知事官邸",
+                      "location": {
+                        "latLng": {
+                          "latitude": 22.993840000000002,
+                          "longitude": 120.21164
+                        }
+                      }
+                    },
+                    "departureTime": "2026-04-19T05:01:10Z"
+                  },
+                  "localizedValues": {
+                    "arrivalTime": {
+                      "time": {},
+                      "timeZone": "Asia/Taipei"
+                    },
+                    "departureTime": {
+                      "time": {},
+                      "timeZone": "Asia/Taipei"
+                    }
+                  },
+                  "headsign": "龍崎",
+                  "transitLine": {
+                    "agencies": [
+                      {
+                        "name": "興南客運",
+                        "uri": "http://snnew.myweb.hinet.net/main.htm"
+                      }
+                    ],
+                    "name": "安平工業區-龍崎",
+                    "nameShort": "紅幹線延駛龍崎",
+                    "vehicle": {
+                      "name": {
+                        "text": "公車"
+                      },
+                      "type": "BUS",
+                      "iconUri": "//maps.gstatic.com/mapfiles/transit/iw2/6/bus2.png"
+                    }
+                  },
+                  "stopCount": 8
+                }
+              ]
+            }
+          },
+          "source": "api",
+          "recommended_mode": "driving"
+        },
+        {
+          "from": 5,
+          "to": 6,
+          "modes": {
+            "walking": {
+              "duration_min": 46.8,
+              "distance_km": 3.2
+            },
+            "driving": {
+              "duration_min": 12.4,
+              "distance_km": 3.2
+            },
+            "transit": {
+              "duration_min": 23.9,
+              "distance_km": 4.4,
+              "transit_steps": [
+                {
+                  "stopDetails": {
+                    "arrivalStop": {
+                      "name": "臺南火車站(中山路C)",
+                      "location": {
+                        "latLng": {
+                          "latitude": 22.99662,
+                          "longitude": 120.21106
+                        }
+                      }
+                    },
+                    "arrivalTime": "2026-04-19T06:22:01Z",
+                    "departureStop": {
+                      "name": "富強市場(東門路)",
+                      "location": {
+                        "latLng": {
+                          "latitude": 22.982785999999997,
+                          "longitude": 120.22736300000001
+                        }
+                      }
+                    },
+                    "departureTime": "2026-04-19T06:07:13Z"
+                  },
+                  "localizedValues": {
+                    "arrivalTime": {
+                      "time": {},
+                      "timeZone": "Asia/Taipei"
+                    },
+                    "departureTime": {
+                      "time": {},
+                      "timeZone": "Asia/Taipei"
+                    }
+                  },
+                  "headsign": "安平工業區",
+                  "transitLine": {
+                    "agencies": [
+                      {
+                        "name": "興南客運",
+                        "uri": "http://snnew.myweb.hinet.net/main.htm"
+                      }
+                    ],
+                    "name": "安平工業區-龍崎",
+                    "nameShort": "紅幹線延駛龍崎",
+                    "vehicle": {
+                      "name": {
+                        "text": "公車"
+                      },
+                      "type": "BUS",
+                      "iconUri": "//maps.gstatic.com/mapfiles/transit/iw2/6/bus2.png"
+                    }
+                  },
+                  "stopCount": 9
+                }
+              ]
+            }
+          },
+          "source": "api",
+          "recommended_mode": "driving"
+        },
+        {
+          "from": 6,
+          "to": 7,
+          "modes": {
+            "walking": {
+              "duration_min": 9.8,
+              "distance_km": 0.6
+            },
+            "driving": {
+              "duration_min": 5.0,
+              "distance_km": 1.2
+            },
+            "transit": {
+              "duration_min": 9.8,
+              "distance_km": 0.6
+            }
+          },
+          "source": "api",
+          "recommended_mode": "driving"
+        },
+        {
+          "from": 7,
+          "to": 8,
+          "modes": {
+            "walking": {
+              "duration_min": 4.1,
+              "distance_km": 0.3
+            },
+            "driving": {
+              "duration_min": 2.4,
+              "distance_km": 0.5
+            },
+            "transit": {
+              "duration_min": 4.1,
+              "distance_km": 0.3
+            }
+          },
+          "source": "api",
+          "recommended_mode": "walking"
+        }
+      ]
+    }
+  ]
+}

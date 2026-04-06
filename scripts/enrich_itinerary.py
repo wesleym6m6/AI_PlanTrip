@@ -101,7 +101,7 @@ def select_recommended_mode(modes, available_modes=None):
 
 def main():
     itinerary_path = pathlib.Path(sys.argv[1])
-    itinerary = json.loads(itinerary_path.read_text())
+    itinerary = json.loads(itinerary_path.read_text(encoding="utf-8"))
 
     # Parse CLI args: modes, timezone, --days filter
     # Usage: python3 enrich_itinerary.py itinerary.json [walking,driving] [+09:00] [--days 1,3]
