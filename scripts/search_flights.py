@@ -1,358 +1,255 @@
 """
-Search Google Flights via SerpApi and cache results.
+Search flights via SerpApi Google Flights engine.
+
+Round-trip (type=1) requires three separate searches:
+  1. Initial search → returns OUTBOUND legs only (each with departure_token)
+  2. + departure_token → returns RETURN legs for that outbound (each with booking_token)
+  3. + booking_token  → returns OTA booking links + prices
 
 Input (stdin JSON):
 {
-  "departure_id": "TPE",          # IATA airport code
-  "arrival_id": "NRT",            # IATA airport code
-  "outbound_date": "2026-05-15",  # YYYY-MM-DD
-  "return_date": "2026-05-20",    # YYYY-MM-DD (null for one-way)
-  "type": 1,                      # 1=round-trip, 2=one-way
-  "adults": 1,                    # default 1
-  "currency": "TWD",              # default TWD
-  "stops": null,                  # null=any, 1=nonstop, 2=≤1stop, 3=≤2stops
-  "travel_class": null,           # null=economy, 2=premium, 3=business, 4=first
-  "sort_by": null,                # null=top, 2=price, 3=departure, 5=duration
-  "include_airlines": null,       # comma-separated IATA codes (e.g. "VJ,7C,MM")
-  "exclude_airlines": null,       # comma-separated IATA codes
-  "max_price": null,              # max ticket price (in currency)
-  "max_duration": null,           # max flight duration in minutes
-  "cache_path": "trips/{slug}/data/flights_cache.json",
-  "max_results": 10
+  "departure_id": "TPE",
+  "arrival_id": "DAD",
+  "outbound_date": "2026-10-08",
+  "return_date": "2026-10-12",
+  "cache_path": "trips/danang-2026-10/data/flights_cache.json"
 }
 
-Convenience filter (local post-filter, not API-level):
-  "lcc_only": true                # only show flights operated by known LCCs
+Stage 2 adds: "departure_token": "<from stage 1 result>"
+Stage 3 adds: "booking_token": "<from stage 2 result>"
 
-Output (stdout JSON):
-{
-  "cache_key": "...",
-  "cache_hit": true/false,
-  "flights": [...],
-  "price_insights": {...},
-  "filters_applied": [...],
-  "warnings": [...],              # optional, e.g. "no LCC on this route"
-  "usage": {"searches_used": N, "searches_remaining": M},
-  "fetched_at": "..."
-}
+Required: departure_id, arrival_id, outbound_date, cache_path
+          (return_date required when type=1 round-trip)
 
-SerpApi quota: 250 searches/month (free tier). Cache valid for 24 hours.
+Optional overrides: type, adults, currency, hl, gl, stops, travel_class,
+  sort_by, include_airlines, exclude_airlines, max_price, max_duration,
+  outbound_times, return_times, bags, emissions, layover_duration,
+  exclude_conns, children, infants_in_seat, infants_on_lap,
+  departure_token, booking_token, lcc_only
 
-Note: Round-trip (type=1) prices include BOTH legs. Only outbound flights are shown;
-use departure_token to query return flights (costs 1 additional search credit).
-Children are not supported by SerpApi — prices reflect adult fares only.
+Full parameter docs: docs/serpapi-flights-params.md
 """
 import json
 import sys
-import time
 
 sys.path.insert(0, str(__import__("pathlib").Path(__file__).parent))
-from serpapi_utils import (
-    get_api_key, get_repo_root, check_usage, increment_usage,
-    load_cache, save_cache, build_cache_key,
-)
+from serpapi_common import add_fetched_at, serpapi_search, write_cache
 
-# Known low-cost carriers (IATA codes) — used by lcc_only filter
-# Covers major LCCs operating in Asia-Pacific, with some global coverage
+DEFAULTS = {
+    "type": 1,
+    "adults": 1,
+    "currency": "TWD",
+    "hl": "zh-TW",
+    "gl": "tw",
+}
+
+# Asia-Pacific LCC IATA codes
 LCC_AIRLINES = {
-    # Taiwan / East Asia
-    "IT",  # Tigerair Taiwan (台灣虎航)
-    "MM",  # Peach Aviation (樂桃航空)
-    "GK",  # Jetstar Japan
-    "7C",  # Jeju Air (濟州航空)
-    "LJ",  # Jin Air (真航空)
-    "TW",  # T'way Air (德威航空)
-    "ZE",  # Eastar Jet
-    "BX",  # Air Busan (釜山航空)
-    "RS",  # Air Seoul
-    # Southeast Asia
-    "VJ",  # VietJet Air (越捷航空)
-    "QH",  # Bamboo Airways
-    "AK",  # AirAsia (亞航)
-    "D7",  # AirAsia X
+    "VJ",  # VietJet Air
+    "QZ",  # Indonesia AirAsia
+    "AK",  # AirAsia (Malaysia)
     "FD",  # Thai AirAsia
     "Z2",  # AirAsia Philippines
-    "QZ",  # AirAsia Indonesia
+    "D7",  # AirAsia X
+    "XJ",  # Thai AirAsia X
+    "XT",  # Indonesia AirAsia X
+    "IT",  # Tigerair Taiwan
+    "TR",  # Scoot
+    "TZ",  # Scoot (old IATA)
+    "MM",  # Peach Aviation
+    "GK",  # Jetstar Japan
+    "JW",  # Vanilla Air (merged into Peach)
     "3K",  # Jetstar Asia
-    "TR",  # Scoot (酷航)
+    "JQ",  # Jetstar Airways
+    "BL",  # Pacific Airlines (ex Jetstar Pacific)
+    "5J",  # Cebu Pacific
+    "DG",  # Cebgo
     "SL",  # Thai Lion Air
-    "DD",  # Nok Air
-    "OD",  # Batik Air (formerly Malindo)
-    "5J",  # Cebu Pacific (宿霧太平洋)
-    # Hong Kong / Macau
-    "UO",  # HK Express (香港快運)
-    # NX (Air Macau) removed — full-service carrier, not LCC
-    # Japan full-service LCC
-    "BC",  # Skymark Airlines
-    "6J",  # Solaseed Air
-    # JW (Vanilla Air) removed — merged into Peach (MM) in 2019
-    # Global
-    "FR",  # Ryanair
-    "W6",  # Wizz Air
-    "U2",  # easyJet
-    "NK",  # Spirit Airlines
-    "F9",  # Frontier Airlines
-    "WN",  # Southwest Airlines
-    "G4",  # Allegiant Air
+    "JT",  # Lion Air
+    "IW",  # Wings Air
+    "OD",  # Batik Air Malaysia
+    "TW",  # T'way Air
+    "LJ",  # Jin Air
+    "7C",  # Jeju Air
+    "BX",  # Air Busan
+    "ZE",  # Eastar Jet
+    "RS",  # Air Seoul
+    "9C",  # Spring Airlines
+    "HO",  # Juneyao Airlines
+    "GX",  # Guangxi Beibu Gulf Airlines
+    "DR",  # Ruili Airlines
+    "PN",  # China West Air
+    "TV",  # Tibet Airlines
+}
+
+REQUIRED_FIELDS = {"departure_id", "arrival_id", "outbound_date", "cache_path"}
+
+# All optional SerpApi params that can be passed through
+OPTIONAL_PARAMS = {
+    "type", "adults", "currency", "hl", "gl", "stops", "travel_class",
+    "sort_by", "include_airlines", "exclude_airlines", "max_price",
+    "max_duration", "outbound_times", "return_times", "bags", "emissions",
+    "layover_duration", "exclude_conns", "children", "infants_in_seat",
+    "infants_on_lap", "departure_token", "booking_token", "return_date",
 }
 
 
-def _is_lcc(flight):
-    """Check if all segments of a flight are operated by known LCCs."""
-    for seg in flight.get("segments", []):
-        # Extract IATA code from flight number (e.g. "VJ 843" → "VJ")
-        fn = seg.get("flight_number", "")
-        code = fn.split()[0] if fn else ""
-        if code not in LCC_AIRLINES:
-            return False
-    return True
+def build_params(user_input):
+    """Merge DEFAULTS + user_input into SerpApi params."""
+    merged = {**DEFAULTS, **user_input}
+
+    params = {"engine": "google_flights", "show_hidden": True}
+
+    # Required fields
+    for key in ("departure_id", "arrival_id", "outbound_date"):
+        params[key] = merged[key]
+
+    # return_date required for round-trip (type=1)
+    if merged.get("type", 1) == 1:
+        if "return_date" not in merged:
+            raise ValueError("return_date is required for round-trip (type=1)")
+        params["return_date"] = merged["return_date"]
+    elif "return_date" in merged:
+        params["return_date"] = merged["return_date"]
+
+    # Token-based queries (second-stage)
+    for token_key in ("departure_token", "booking_token"):
+        if token_key in merged:
+            params[token_key] = merged[token_key]
+
+    # All other optional params
+    for key in OPTIONAL_PARAMS - {"departure_token", "booking_token", "return_date"}:
+        if key in merged and merged[key] is not None:
+            params[key] = merged[key]
+
+    return params
 
 
-def _parse_flight(flight_data, label="other"):
-    """Extract relevant fields from a SerpApi flight result."""
-    segments = []
-    for seg in flight_data.get("flights", []):
-        dep = seg.get("departure_airport", {})
-        arr = seg.get("arrival_airport", {})
-        segments.append({
-            "airline": seg.get("airline"),
-            "flight_number": seg.get("flight_number"),
-            "departure_airport": dep.get("id"),
-            "departure_time": dep.get("time"),
-            "arrival_airport": arr.get("id"),
-            "arrival_time": arr.get("time"),
-            "duration_min": seg.get("duration"),
-        })
+def extract_flights(raw):
+    """Extract flight data, removing search_metadata/search_parameters."""
+    result = {}
+    for key, value in raw.items():
+        if key in ("search_metadata", "search_parameters"):
+            continue
+        result[key] = value
+    return result
 
-    flight_numbers = [s["flight_number"] for s in segments if s.get("flight_number")]
-    airlines = list(dict.fromkeys(s["airline"] for s in segments if s.get("airline")))
 
+def _extract_iata(leg):
+    """Extract IATA code from a flight leg.
+
+    Tries flight_number first (e.g. 'IT 551' → 'IT'),
+    then falls back to airline_logo URL (e.g. '.../70px/IT.png' → 'IT').
+    """
+    fn = leg.get("flight_number", "")
+    if fn:
+        parts = fn.split()
+        if parts and len(parts[0]) == 2:
+            return parts[0]
+    logo = leg.get("airline_logo", "")
+    if logo:
+        # URL like https://www.gstatic.com/flights/airline_logos/70px/IT.png
+        basename = logo.rsplit("/", 1)[-1]
+        code = basename.split(".")[0]
+        if len(code) == 2:
+            return code
+    return None
+
+
+def tag_lcc(flights):
+    """Add is_lcc flag to each flight based on airline IATA codes."""
+    for flight in flights:
+        codes = set()
+        for leg in flight.get("flights", []):
+            code = _extract_iata(leg)
+            if code:
+                codes.add(code)
+        flight["is_lcc"] = bool(codes & LCC_AIRLINES)
+    return flights
+
+
+def filter_lcc(flights):
+    """Keep only flights where all legs are LCC."""
+    result = []
+    for flight in flights:
+        codes = set()
+        for leg in flight.get("flights", []):
+            code = _extract_iata(leg)
+            if code:
+                codes.add(code)
+        if codes and codes.issubset(LCC_AIRLINES):
+            result.append(flight)
+    return result
+
+
+def summarize_flight(flight, index):
+    """Extract key fields for stdout summary (keeps cache intact)."""
+    legs = flight.get("flights", [])
+    first_leg = legs[0] if legs else {}
+    last_leg = legs[-1] if legs else first_leg
     return {
-        "label": label,
-        "airline": ", ".join(airlines) if airlines else None,
-        "flight_numbers": flight_numbers,
-        "departure": {
-            "airport": segments[0]["departure_airport"] if segments else None,
-            "time": segments[0]["departure_time"] if segments else None,
-        },
-        "arrival": {
-            "airport": segments[-1]["arrival_airport"] if segments else None,
-            "time": segments[-1]["arrival_time"] if segments else None,
-        },
-        "total_duration_min": flight_data.get("total_duration"),
-        "stops": len(flight_data.get("layovers", [])),
-        "layovers": [
-            {"airport": lo.get("id"), "duration_min": lo.get("duration")}
-            for lo in flight_data.get("layovers", [])
-        ] if flight_data.get("layovers") else [],
-        "price": flight_data.get("price"),
-        "trip_type": flight_data.get("type"),  # "Round trip" / "One way"
-        "carbon_emissions": flight_data.get("carbon_emissions", {}).get("this_flight"),
-        "segments": segments,
-        "departure_token": flight_data.get("departure_token"),  # for querying return flights
-        "booking_token": flight_data.get("booking_token"),
+        "index": index,
+        "airline": first_leg.get("airline", "?"),
+        "flight_number": first_leg.get("flight_number", "?"),
+        "departure": first_leg.get("departure_airport", {}).get("time", "?"),
+        "arrival": last_leg.get("arrival_airport", {}).get("time", "?"),
+        "duration": flight.get("total_duration"),
+        "price": flight.get("price"),
+        "is_lcc": flight.get("is_lcc", False),
+        "aircraft": first_leg.get("airplane", "?"),
+        "legroom": first_leg.get("legroom"),
+        "often_delayed": first_leg.get("often_delayed_by_over_30_min", False),
+        "stops": len(legs) - 1,
+        "departure_token": flight.get("departure_token"),
     }
-
-
-def search_flights(params):
-    """Execute a Google Flights search via SerpApi."""
-    api_key = get_api_key()
-    if not api_key:
-        return {"error": "SERPAPI_API_KEY not set. Add it to .envrc and run direnv allow."}
-
-    repo_root = get_repo_root()
-    usage = check_usage(repo_root)
-    if not usage["ok"]:
-        return {
-            "error": "monthly_quota_exhausted",
-            "usage": usage,
-            "message": f"SerpApi monthly limit reached ({usage['monthly_limit']}). Resets next month.",
-        }
-
-    # Build cache key — include filter params so different filters don't collide
-    departure_id = params["departure_id"].upper()
-    arrival_id = params["arrival_id"].upper()
-    trip_type = params.get("type", 1)
-    return_date = params.get("return_date") if trip_type == 1 else "oneway"
-    adults = params.get("adults", 1)
-
-    filter_parts = []
-    if params.get("travel_class"): filter_parts.append(f"tc{params['travel_class']}")
-    if params.get("stops"): filter_parts.append(f"st{params['stops']}")
-    if params.get("lcc_only"): filter_parts.append("lcc")
-    if params.get("include_airlines"): filter_parts.append(f"inc{params['include_airlines']}")
-    if params.get("exclude_airlines"): filter_parts.append(f"exc{params['exclude_airlines']}")
-    if params.get("max_price"): filter_parts.append(f"mp{params['max_price']}")
-    if params.get("max_duration"): filter_parts.append(f"md{params['max_duration']}")
-    if params.get("sort_by"): filter_parts.append(f"sb{params['sort_by']}")
-    filter_suffix = "-".join(filter_parts) if filter_parts else "nofilter"
-
-    cache_key = build_cache_key(departure_id, arrival_id, params["outbound_date"], return_date, adults, filter_suffix)
-    cache_path = params["cache_path"]
-
-    # Check cache
-    cached = load_cache(cache_path, cache_key)
-    if cached:
-        print(f"Cache hit for {cache_key}", file=sys.stderr)
-        return {
-            "cache_key": cache_key,
-            "cache_hit": True,
-            "flights": cached.get("flights", []),
-            "price_insights": cached.get("price_insights"),
-            "usage": usage,
-            "fetched_at": cached.get("fetched_at"),
-        }
-
-    # Build SerpApi request
-    print(f"Searching flights: {departure_id} → {arrival_id} on {params['outbound_date']}...", file=sys.stderr)
-
-    from serpapi import Client
-    client = Client(api_key=api_key)
-
-    search_params = {
-        "engine": "google_flights",
-        "departure_id": departure_id,
-        "arrival_id": arrival_id,
-        "outbound_date": params["outbound_date"],
-        "type": str(trip_type),
-        "adults": str(adults),
-        "currency": params.get("currency", "TWD"),
-        "hl": "zh-TW",
-        "gl": "tw",
-    }
-
-    if trip_type == 1 and params.get("return_date"):
-        search_params["return_date"] = params["return_date"]
-    if params.get("stops"):
-        search_params["stops"] = str(params["stops"])
-    if params.get("travel_class"):
-        search_params["travel_class"] = str(params["travel_class"])
-    if params.get("sort_by"):
-        search_params["sort_by"] = str(params["sort_by"])
-    if params.get("include_airlines"):
-        search_params["include_airlines"] = params["include_airlines"]
-    if params.get("exclude_airlines"):
-        search_params["exclude_airlines"] = params["exclude_airlines"]
-    if params.get("max_price"):
-        search_params["max_price"] = str(params["max_price"])
-    if params.get("max_duration"):
-        search_params["max_duration"] = str(params["max_duration"])
-
-    # Call API with retry
-    result = None
-    for attempt in range(3):
-        try:
-            result = client.search(search_params)
-            break
-        except Exception as e:
-            if attempt < 2:
-                wait = 2 ** (attempt + 1)
-                print(f"SerpApi error, retrying in {wait}s: {e}", file=sys.stderr)
-                time.sleep(wait)
-            else:
-                return {"error": f"SerpApi request failed after 3 attempts: {e}"}
-
-    # Check for API error response
-    if result.get("error"):
-        return {"error": f"SerpApi returned error: {result['error']}"}
-
-    # Parse results
-    best_flights = result.get("best_flights", [])
-    other_flights = result.get("other_flights", [])
-
-    parsed = []
-    for f in best_flights:
-        parsed.append(_parse_flight(f, label="best"))
-    for f in other_flights:
-        parsed.append(_parse_flight(f, label="other"))
-
-    total_before_filter = len(parsed)
-
-    # Post-filters
-    filters_applied = []
-    warnings = []
-    if params.get("lcc_only"):
-        parsed = [f for f in parsed if _is_lcc(f)]
-        filters_applied.append(f"lcc_only ({total_before_filter}->{len(parsed)})")
-        if len(parsed) == 0 and total_before_filter > 0:
-            warnings.append(f"lcc_only filter removed all {total_before_filter} flights. "
-                            f"This route likely has no LCC coverage. "
-                            f"Consider removing lcc_only filter to see available options.")
-            print(f"  ⚠ No LCC flights found on this route ({total_before_filter} flights available without filter)",
-                  file=sys.stderr)
-
-    # Local sort — respect sort_by, default to price
-    sort_by = params.get("sort_by")
-    if sort_by == 5:  # duration
-        parsed.sort(key=lambda x: x.get("total_duration_min") or float("inf"))
-    elif sort_by == 3:  # departure time
-        parsed.sort(key=lambda x: x.get("departure", {}).get("time") or "")
-    else:  # default: price
-        parsed.sort(key=lambda x: x.get("price") or float("inf"))
-
-    # Take top N
-    max_results = params.get("max_results", 10)
-    parsed = parsed[:max_results]
-
-    # Add rank + lcc flag
-    for i, f in enumerate(parsed):
-        f["rank"] = i + 1
-        f["is_lcc"] = _is_lcc(f)
-
-    # Price insights
-    price_insights = result.get("price_insights")
-
-    # Save to cache
-    from datetime import datetime, timezone as tz
-    fetched_at = datetime.now(tz.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-    cache_data = {
-        "flights": parsed,
-        "price_insights": price_insights,
-        "filters_applied": filters_applied,
-        "fetched_at": fetched_at,
-        "raw_params": search_params,
-    }
-    save_cache(cache_path, cache_key, cache_data)
-
-    # Increment usage
-    query_summary = f"{departure_id}→{arrival_id} {params['outbound_date']}"
-    if trip_type == 1 and params.get("return_date"):
-        query_summary += f"~{params['return_date']}"
-    updated_usage = increment_usage(repo_root, "google_flights", query_summary)
-
-    count = len(parsed)
-    print(f"  ✓ Found {count} flights (best: {len(best_flights)}, other: {len(other_flights)})", file=sys.stderr)
-    if price_insights:
-        low = price_insights.get("lowest_price")
-        rng = price_insights.get("typical_price_range")
-        if low:
-            print(f"  💰 Lowest: {params.get('currency', 'TWD')} {low}", file=sys.stderr)
-        if rng:
-            print(f"  📊 Typical range: {params.get('currency', 'TWD')} {rng[0]}~{rng[1]}", file=sys.stderr)
-    print(f"  📊 Usage: {updated_usage['searches_used']}/{check_usage(repo_root)['monthly_limit']}", file=sys.stderr)
-
-    output = {
-        "cache_key": cache_key,
-        "cache_hit": False,
-        "flights": parsed,
-        "price_insights": price_insights,
-        "filters_applied": filters_applied,
-        "usage": updated_usage,
-        "fetched_at": cache_data["fetched_at"],
-    }
-    if warnings:
-        output["warnings"] = warnings
-    return output
 
 
 def main():
-    # Force UTF-8 on stdin/stdout for Windows compatibility
-    sys.stdin.reconfigure(encoding="utf-8")
-    sys.stdout.reconfigure(encoding="utf-8")
+    user_input = json.load(sys.stdin)
 
-    input_data = json.load(sys.stdin)
-    result = search_flights(input_data)
-    json.dump(result, sys.stdout, ensure_ascii=False, indent=2)
+    missing = REQUIRED_FIELDS - set(user_input.keys())
+    if missing:
+        print(f"Missing required fields: {', '.join(sorted(missing))}", file=sys.stderr)
+        sys.exit(1)
+
+    cache_path = user_input.pop("cache_path")
+    lcc_only = user_input.pop("lcc_only", False)
+
+    params = build_params(user_input)
+    print(f"Searching flights: {params.get('departure_id')} → {params.get('arrival_id')} "
+          f"({params.get('outbound_date')})", file=sys.stderr)
+
+    raw = serpapi_search(params)
+    data = extract_flights(raw)
+
+    # Tag and optionally filter LCC
+    for key in ("best_flights", "other_flights"):
+        if key in data:
+            data[key] = tag_lcc(data[key])
+            add_fetched_at(data[key])
+
+    if lcc_only:
+        for key in ("best_flights", "other_flights"):
+            if key in data:
+                data[key] = filter_lcc(data[key])
+        print("LCC filter applied", file=sys.stderr)
+
+    write_cache(cache_path, data)
+
+    # Summary with per-flight key fields
+    all_flights = data.get("best_flights", []) + data.get("other_flights", [])
+    prices = [f["price"] for f in all_flights if "price" in f]
+    from datetime import datetime, timezone
+    now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+    summary = {
+        "flights_count": len(all_flights),
+        "price_range": [min(prices), max(prices)] if prices else [],
+        "cache_path": cache_path,
+        "fetched_at": now,
+        "flights": [summarize_flight(f, i) for i, f in enumerate(all_flights)],
+    }
+    json.dump(summary, sys.stdout, ensure_ascii=False, indent=2)
     print(file=sys.stdout)
 
 
